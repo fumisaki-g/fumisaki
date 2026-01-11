@@ -1,0 +1,1 @@
+https://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt

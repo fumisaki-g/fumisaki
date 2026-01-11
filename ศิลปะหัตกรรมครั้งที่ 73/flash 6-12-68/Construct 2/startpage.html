@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+    (C) Copyright Scirra Ltd, 2011.  All rights reserved.
+-->
+
+<head>
+    <meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="sp/main.css?v=452" rel="stylesheet" type="text/css" />
+    <!--[if IE 7]>
+        <style>
+            .license-col, .new-col
+            {
+                margin-bottom:-30px;
+            }
+        </style>
+    <![endif]-->
+    <link href="sp/fb/fancybox/jquery.fancybox-1.3.4.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+
+<body onselectstart="return false;">
+
+<div class="top">
+    <div class="releasenum">Release ...</div>
+</div>
+<div class="middle">
+    <div class="content">
+        <div class="proj-col">
+            <h2>Start</h2>
+            <ul>
+                <li><a href="javascript:external.NewProject();" title="Create a new Construct 2 project"><div class="i ico-new"></div>New Project</a></li>
+                <li><a href="javascript:external.OpenProject();" title="Open an existing Construct 2 project"><div class="i ico-folder"></div>Open Project</a></li>
+            </ul>
+            <h2>Project Examples</h2>
+            <ul>
+                <li><a href="javascript:external.OpenDemo1();" title="A laser and explosion filled space shoot-em-up"><div class="i ico-c2"></div>Space Blaster</a></li>
+                <li><a href="javascript:external.OpenDemo2();" title="A demo of a top-down shooter with some special effects"><div class="i ico-c2"></div>Ghost Shooter</a></li>
+                <!--<li><a href="" title=""><div class="i ico-c2"></div>Demo</a></li>-->
+				<li><a href="javascript:external.BrowseExamples();" title="Open Construct 2's examples directory"><div class="i ico-folder"></div>Browse examples</a></li>
+            </ul>
+        </div>
+        <div class="recent-col" style="overflow-wrap: break-word; word-wrap: break-word;">
+            <h2>Recent Projects</h2>
+            <ul id="mru">
+
+            </ul>
+        </div>
+        <div class="links-col">
+            <h2>Useful Links</h2>
+            <ul>
+                <li><a href="javascript:external.Manual();" title="Construct 2 documentation"><div class="i ico-help"></div>Manual</a></li>
+                <li><a href="javascript:external.LatestTutorials();" title="View the tutorials directory online"><div class="i ico-help"></div>Tutorials</a></li>
+                <li><a href="javascript:external.ScirraForum();" title="Get help and support on the official forums"><div class="i ico-forum"></div>Forums</a></li>
+                <li><a href="javascript:external.ScirraStore();" title="Browse the Scirra Store for more content"><div class="i ico-link"></div>Store</a></li>
+				<li><a href="javascript:external.TryConstruct3();" title="Try the new Construct 3!"><div class="i ico-c3"></div>Try Construct 3</a></li>
+				<li><a href="javascript:external.WhatsNewInConstruct3();" title="See everything that's new in Construct 3 that Construct 2 doesn't have"><div class="i ico-c3"></div>What's new in Construct 3</a></li>
+            </ul>
+            <h2>Stay up to date</h2><br />
+            <div class="social-wrap">
+				<a href="javascript:external.Facebook();" title="Find our Facebook page"><img src="sp/facebook.png" style="border: none;"/></a><a href="javascript:external.Twitter();" title="Follow us on Twitter"><img src="sp/twitter.png" style="border: none;"/></a><a href="javascript:external.YouTube();" title="Subscribe to our YouTube channel"><img src="sp/youtube.png" style="border: none;"/></a><a href="javascript:external.Reddit();" title="Join the Construct subreddit"><img src="sp/reddit.png" style="border: none;"/></a>
+                <br />
+                <br />
+            </div>
+        </div>    
+        <div class="clear"></div>
+        <div class="break"></div>
+        <div class="new-col">
+            <h2>New to Construct 2?</h2>
+            <p>
+                Why not try the <a href="javascript:external.BeginnersTutorial()">Beginner's Guide to Construct 2</a>?  Also try browsing our online <a href="javascript:external.AllTutorials()">list of all tutorials</a>, or read the <a href="javascript:external.Manual();" title="Construct 2 documentation">manual</a>.
+            </p>
+        </div>
+        <div class="license-col">
+            <div id="freeedition">
+                <h2>Upgrade to Construct 3</h2>
+                <p>
+                    You are currently using the Free Edition of Construct 2. Upgrade to Construct 3 for loads of new features and huge performance improvements!
+                </p>
+                <a class="button" href="javascript:external.BuyNow();" title="Upgrade to Construct 3!"></a>
+            </div>
+            <div id="paidedition">
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>    
+</div>
+<div class="bottom"></div>
+
+<div id="fb-pop">
+    <div id="fb-content">
+        <div class="fb-txt">
+            <strong>Did you know Construct 3 is now out?</strong><br /><br />
+            It comes with <a href="javascript:external.WhatsNewInConstruct3();" title="See everything that's new in Construct 3 that Construct 2 doesn't have" style="text-decoration: underline">loads more features and possibilities</a>. Make better games!<br />
+        </div>
+		<br />
+        <a href="javascript:external.TryConstruct3()" title="Try Construct 3 now!" style="font-size: 1.7em; font-weight: bold; text-decoration: underline">Click here to try Construct 3</a>
+		<br /><br />
+        <a class="no-thx" href="javascript:void(0)" onclick="$.fancybox.close()" title="Are you sure? There are loads of improvements in Construct 3!">No thanks, maybe next time!</a>
+    </div>
+</div>
+<a href="#fb-content" id="autostart"></a> 
+
+<div id="welcome-pop">
+    <div id="welcome-content">
+        
+        <div class="welcome-txt">
+            Welcome to Construct 2! Did you know Construct 3 is know available?  <a href="javascript:external.TryConstruct3()" title="Try Construct 3">Try it now.</a>  After you close this window you will see the start page.  You can:
+            <br /><br /><br /><br />
+            Get going with our <a href="javascript:external.WelcomePopTut()" title="Learn how to use Construct 2">beginner's tutorial</a> if you're new<br />
+            <br /><br /><br />
+            Play around with our <a href="javascript:void(0)" onclick="$.fancybox.close();javascript:external.BrowseExamples();" title="Learn how to use Construct 2 by example">example games and demos</a><br />
+            <br /><br /><br />
+            <a href="javascript:external.TryConstruct3()" title="Try Construct 3">Try Construct 3</a>, the newest and best version of Construct!<br /><br />
+            <a class="go-button" href="javascript:void(0)" onclick="$.fancybox.close()" title="Start making games"></a>
+        </div>    
+    </div>
+</div>
+<a href="#welcome-content" id="autostart2"></a> 
+
+<script src="jquery-1.6.3.min.js"></script>
+<script type="text/javascript" src="sp/fb/fancybox/jquery.fancybox-1.3.4.pack.js"></script>	
+<script>
+	function makeMRULink(str, fn) {
+		var arr = str.split("\\");
+		var name = arr[arr.length - 1];
+
+		return '<a href="javascript:external.' + fn + '();" title="' + str + '">' + name + '</a>';
+	};
+	
+	function checkReady()
+	{
+		if (external.IsReady() == "no")
+		{
+			setTimeout(checkReady, 100);
+			return;
+		}
+		
+		// Trigger fancyboxes
+		$("#autostart").fancybox({
+	        'transitionIn': 'elastic',
+	        'transitionOut': 'elastic',
+	        'speedIn': 300,
+	        'speedOut': 200,
+	        'overlayShow': true,
+	        'hideOnOverlayClick': false,
+	        'scrolling': 'no'
+	    });
+	    $("#autostart2").fancybox({
+	        'transitionIn': 'elastic',
+	        'transitionOut': 'elastic',
+	        'speedIn': 300,
+	        'speedOut': 200,
+	        'overlayShow': true,
+	        'hideOnOverlayClick': true,
+	        'scrolling': 'no'
+	    });
+		
+	    if (window.location.search.indexOf("&frun") > 0)
+        {
+	        $("#autostart2").trigger('click');  // Trigger for first run popup
+	    }
+	    else if (window.location.search.indexOf("&nag") > 0)
+        {	        
+	        $("#autostart").trigger('click'); // Trigger for buy now free edition popup
+	    }
+	};
+
+	jQuery(document).ready(function () {
+
+	    var mrulist = "";
+
+	    if (external.GetMRU1())
+	        mrulist += '<li><div class="i ico-c2" />' + makeMRULink(external.GetMRU1(), "OpenMRU1") + '</li>';
+
+	    if (external.GetMRU2())
+	        mrulist += '<li><div class="i ico-c2" />' + makeMRULink(external.GetMRU2(), "OpenMRU2") + '</li>';
+
+	    if (external.GetMRU3())
+	        mrulist += '<li><div class="i ico-c2" />' + makeMRULink(external.GetMRU3(), "OpenMRU3") + '</li>';
+
+	    if (external.GetMRU4())
+	        mrulist += '<li><div class="i ico-c2" />' + makeMRULink(external.GetMRU4(), "OpenMRU4") + '</li>';
+
+	    if (external.GetMRU5())
+	        mrulist += '<li><div class="i ico-c2" />' + makeMRULink(external.GetMRU5(), "OpenMRU5") + '</li>';
+
+	    if (external.GetMRU6())
+	        mrulist += '<li><div class="i ico-c2" />' + makeMRULink(external.GetMRU6(), "OpenMRU6") + '</li>';
+
+	    if (external.GetMRU7())
+	        mrulist += '<li><div class="i ico-c2" />' + makeMRULink(external.GetMRU7(), "OpenMRU7") + '</li>';
+
+	    jQuery("#mru").html(mrulist);
+
+	    if (window.location.search.indexOf("&freeedition") > 0) {
+	        jQuery("#paidedition").hide();
+	        jQuery("#freeedition").show();
+	    }
+	    else {
+	        jQuery("#paidedition").show();
+	        jQuery("#freeedition").hide();
+
+	        jQuery("#paidedition").html(external.GetLicenseHTML());
+	    }
+
+	    jQuery(".releasenum").text(external.GetReleaseTitle());
+		
+		checkReady();
+	});
+</script>
+</body>
+</html>

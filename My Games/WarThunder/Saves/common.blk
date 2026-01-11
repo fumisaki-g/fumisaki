@@ -1,0 +1,19 @@
+content{
+  timesIntroVideoPlayed:i=1
+  languageId:i=0
+  speechLanguageId:i=0
+  uniqueId:t="6961FDBA610DB626"
+  runCount:i=1
+
+  gui_options{
+    OPTIONS_MODE_GAMEPLAY{}
+    OPTIONS_MODE_TRAINING{}
+    OPTIONS_MODE_CAMPAIGN{}
+    OPTIONS_MODE_SINGLE_MISSION{}
+    OPTIONS_MODE_DYNAMIC{}
+    OPTIONS_MODE_USER_MISSION{}
+    OPTIONS_MODE_MP_DOMINATION{}
+    OPTIONS_MODE_MP_SKIRMISH{}
+    OPTIONS_MODE_SEARCH{}
+  }
+}

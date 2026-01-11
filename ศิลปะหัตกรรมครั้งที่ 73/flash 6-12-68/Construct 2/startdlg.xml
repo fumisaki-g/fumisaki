@@ -1,0 +1,595 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<startdlg>
+	<template filename="[empty]">
+		<name>New empty project</name>
+		<image>0</image>
+		<description>Create a new empty project with default settings.</description>
+	</template>
+	<template filename="RetroStyleTemplate.capx">
+		<name>New retro style project</name>
+		<image>0</image>
+		<description>Create a platform-neutral project with settings and objects suited to retro style games (such as pixellated rather than smooth scaling).</description>
+	</template>
+	<template filename="StandardLandscape4-3.capx">
+		<name>New empty SD landscape 4:3 project</name>
+		<image>0</image>
+		<description>Create a new empty project with a standard definition 4:3 landscape screen.</description>
+	</template>
+	<template filename="StandardPortrait4-3.capx">
+		<name>New empty SD portrait 4:3 project</name>
+		<image>0</image>
+		<description>Create a new empty project with a standard definition 4:3 portrait screen.</description>
+	</template>
+	<template filename="StandardLandscape16-9.capx">
+		<name>New empty SD landscape 16:9 project</name>
+		<image>0</image>
+		<description>Create a new empty project with a standard definition 16:9 landscape screen.</description>
+	</template>
+	<template filename="StandardPortrait16-9.capx">
+		<name>New empty SD portrait 16:9 project</name>
+		<image>0</image>
+		<description>Create a new empty project with a standard definition 16:9 portrait screen.</description>
+	</template>
+	<template filename="Landscape720p.capx">
+		<name>New empty HD landscape 720p project</name>
+		<image>0</image>
+		<description>Create a new empty project with a high definition 720p (16:9) landscape screen.</description>
+	</template>
+	<template filename="Portrait720p.capx">
+		<name>New empty HD portrait 720p project</name>
+		<image>0</image>
+		<description>Create a new empty project with a high definition 720p (16:9) portrait screen.</description>
+	</template>
+	<template filename="Landscape1080p.capx">
+		<name>New empty HD landscape 1080p project</name>
+		<image>0</image>
+		<description>Create a new empty project with a high definition 1080p (16:9) landscape screen.</description>
+	</template>
+	<template filename="Portrait1080p.capx">
+		<name>New empty HD portrait 1080p project</name>
+		<image>0</image>
+		<description>Create a new empty project with a high definition 1080p (16:9) portrait screen.</description>
+	</template>
+	<template filename="Template-Platformer.capx">
+		<name>Template: Platformer</name>
+		<image>7</image>
+		<description>A project with a basic platform game setup prepared.</description>
+	</template>
+	<template filename="Template-TopDownShooter.capx">
+		<name>Template: Top-down shooter</name>
+		<image>7</image>
+		<description>A project with a basic top-down shooter game setup prepared.</description>
+	</template>
+	<template filename="Template-VerticalShooter.capx">
+		<name>Template: Vertical space shooter</name>
+		<image>7</image>
+		<description>A project with a basic vertical space shooter game setup prepared.</description>
+	</template>
+	<template filename="Template-DrivingGame.capx">
+		<name>Template: Driving game</name>
+		<image>7</image>
+		<description>A project with a basic driving game setup prepared.</description>
+	</template>
+	<template filename="Template-TurretDefense.capx">
+		<name>Template: Turret Defense</name>
+		<image>7</image>
+		<description>A project with a basic turret defense game setup prepared.</description>
+	</template>
+	<template filename="Template-InfiniteJumping.capx">
+		<name>Template: Infinite jumping</name>
+		<image>7</image>
+		<description>A project with a basic infinite jumping platformer setup prepared, with mobile control support.</description>
+	</template>
+	<template filename="Template-Autorunner.capx">
+		<name>Template: Auto-runner</name>
+		<image>7</image>
+		<description>A project with a basic sideways always-moving platformer setup prepared, with mobile control support.</description>
+	</template>
+	<template filename="Template-FlappingBird.capx">
+		<name>Template: Flapping bird</name>
+		<image>7</image>
+		<description>A variation on the flying template where you control a bird that has to fly through gaps.</description>
+	</template>
+	<template filename="Template-Flying.capx">
+		<name>Template: Flying along</name>
+		<image>7</image>
+		<description>A classic helicopter/dodge the obstacles flying game template, with mobile control support.</description>
+	</template>
+	<template filename="Template-PhysicsPuzzle.capx">
+		<name>Template: Physics Puzzle</name>
+		<image>7</image>
+		<description>A project with a basic physics-based puzzle game prepared, with touch support.</description>
+	</template>
+	<template filename="Template-PhysicsCatapult.capx">
+		<name>Template: Physics Catapult</name>
+		<image>7</image>
+		<description>A project with a basic physics-based catapult game prepared, with touch support.</description>
+	</template>
+	<template filename="Template-RTS.capx">
+		<name>Template: Real Time Strategy (RTS)</name>
+		<image>7</image>
+		<description>An advanced template showing how to set up an RTS style game with user-commanded units which aim and fire at enemies.</description>
+	</template>
+	<demo filename="Ghost Shooter (tutorial version).capx">
+		<name>Ghost Shooter (tutorial version)</name>
+		<description>The completed Beginner's Guide tutorial, with a few extras added.</description>
+	</demo>
+	<demo filename="Ghost Shooter ('Rain demo' version).capx">
+		<name>Ghost Shooter ('Rain demo' version)</name>
+		<description>A reworked version of the Ghost Shooter tutorial, making heavy use of visual effects.</description>
+	</demo>
+	<demo filename="Space Blaster game.capx">
+		<name>Space Blaster</name>
+		<description>An example space shoot-em-up game which also uses touch controls to work on mobile.</description>
+	</demo>
+	<example filename="8 direction 1 (simple movement).capx">
+		<name>8 direction behavior (part 1)</name>
+		<level>0</level>
+		<description>A trivial example of the 8 direction movement.</description>
+	</example>
+	<example filename="8 direction 2 (no rotate).capx">
+		<name>8 direction behavior (part 2)</name>
+		<level>0</level>
+		<description>Stop the player rotating by changing a behavior setting.</description>
+	</example>
+	<example filename="8 direction 3 (look at mouse).capx">
+		<name>8 direction behavior (part 3)</name>
+		<level>0</level>
+		<description>Adds an event to make the player look at the mouse.</description>
+	</example>
+	<example filename="8 direction 4 (bound to layout).capx">
+		<name>8 direction behavior (part 4)</name>
+		<level>0</level>
+		<description>Adds another behavior to prevent the player leaving the layout.</description>
+	</example>
+	<example filename="8 direction 5 (shooting bullets).capx">
+		<name>8 direction behavior (part 5)</name>
+		<level>0</level>
+		<description>The player now shoots a bullet when the player clicks the mouse.</description>
+	</example>
+	<example filename="8 direction 6 (spawn position).capx">
+		<name>8 direction behavior (part 6)</name>
+		<level>0</level>
+		<description>Using an image point to change the bullet spawn location.</description>
+	</example>
+	<example filename="9-patch demo.capx">
+		<name>9-patch object</name>
+		<level>1</level>
+		<description>Shows how to use the 9-patch object to draw images that only stretch their middle part.</description>
+	</example>
+	<example filename="Ambient Light.capx">
+		<name>Ambient Light</name>
+		<level>0</level>
+		<description>Shows how to use the User Media object to get an ambient light reading in lux, if supported.</description>
+	</example>
+	<example filename="Audio analyser.capx">
+		<name>Audio analyser</name>
+		<level>2</level>
+		<description>Shows how to display a live graph of frequency information from the playback if advanced audio is supported.</description>
+	</example>
+	<example filename="Audio effects.capx">
+		<name>Audio effects</name>
+		<level>1</level>
+		<description>An sound effect pad showing various effects that can be added if advanced audio is supported.</description>
+	</example>
+	<example filename="Audio scheduling.capx">
+		<name>Audio scheduling</name>
+		<level>2</level>
+		<description>Schedule sound playback at a sample-accurate time using the 'Schedule next play' action.</description>
+	</example>
+	<example filename="Blend modes.capx">
+		<name>Blend modes</name>
+		<level>0</level>
+		<description>Shows what each blend mode setting in the Sprite object does.</description>
+	</example>
+	<example filename="Bouncing balls.capx">
+		<name>Bouncing balls</name>
+		<level>0</level>
+		<description>Use the Bullet behavior to create a bouncing ball movement.</description>
+	</example>
+	<example filename="Bouncing bullets.capx">
+		<name>Bouncing bullets</name>
+		<level>0</level>
+		<description>Shows how bullets can bounce off solids.</description>
+	</example>
+	<example filename="Canvas recording.capx">
+		<name>Canvas recording</name>
+		<level>0</level>
+		<description>Demonstrates how to use the User Media object to record a video of the canvas (where supported).</description>
+	</example>
+	<example filename="Car behavior.capx">
+		<name>Car behavior</name>
+		<level>0</level>
+		<description>A simple demo of the Car movement.</description>
+	</example>
+	<example filename="Custom movement (asteroids).capx">
+		<name>Custom movement (asteroids)</name>
+		<level>1</level>
+		<description>An Asteroids type movement using the Custom Movement behavior.</description>
+	</example>
+	<example filename="Detect input method.capx">
+		<name>Detecting the input method</name>
+		<level>1</level>
+		<description>How to create a title screen that automatically detects whether keyboard/mouse or touch controls are available, and switches controls accordingly.</description>
+	</example>
+	<example filename="Falling blocks.capx">
+		<name>Falling blocks</name>
+		<level>2</level>
+		<description>An advanced example using recursive functions to determine which blocks are connected to the ground, and allowing those which are not to fall down.</description>
+	</example>
+	<example filename="Families.capx">
+		<name>Families</name>
+		<level>1</level>
+		<description>A simple example of how Families can be used to avoid repeating events.</description>
+	</example>
+	<example filename="Fullscreen - scaling to window size.capx">
+		<name>Fullscreen scaling</name>
+		<level>1</level>
+		<description>Demonstrates how to use a fullscreen mode to fill the browser window.</description>
+	</example>
+	<example filename="Gamepad control.capx">
+		<name>Gamepad control</name>
+		<level>0</level>
+		<description>A simple demo of how to use the Gamepad plugin as an alternative input to control a game.</description>
+	</example>
+	<example filename="Geolocation.capx">
+		<name>Geolocation</name>
+		<level>1</level>
+		<description>A simple example of how to use the Geolocation plugin and show the resulting position on Google Maps.</description>
+	</example>
+	<example filename="Instance Variables.capx">
+		<name>Instance Variables</name>
+		<level>0</level>
+		<description>Shows how each instance of an object can store its own values, such as for health.</description>
+	</example>
+	<example filename="Lighting.capx">
+		<name>Lighting</name>
+		<level>1</level>
+		<description>Use layers and blend modes to create a lighting effect.</description>
+	</example>
+	<example filename="Line-of-sight.capx">
+		<name>Line-of-sight</name>
+		<level>0</level>
+		<description>Using the Line-of-sight (LOS) behavior to determine if objects can "see" each other.</description>
+	</example>
+	<example filename="Microphone input.capx">
+		<name>Microphone input</name>
+		<level>2</level>
+		<description>An example of using the User Media object to get live audio input to the Audio object through a microphone.</description>
+	</example>
+	<example filename="Move to mouse.capx">
+		<name>Move to mouse</name>
+		<level>0</level>
+		<description>Click to move an object to a position.</description>
+	</example>
+	<example filename="Multiplayer chat.capx">
+		<name>Multiplayer - chat room</name>
+		<level>1</level>
+		<description>An example of a chat room using the Multiplayer plugin. This is the simplest demonstration of how to use the Multiplayer object features.</description>
+	</example>
+	<example filename="Multiplayer game.capx">
+		<name>Multiplayer - real-time game</name>
+		<level>2</level>
+		<description>The ghost shooter game adapted to a real-time multiplayer shoot-em-up. See the accompanying tutorial for more information.</description>
+	</example>
+	<example filename="Multiplayer pong.capx">
+		<name>Multiplayer - pong</name>
+		<level>2</level>
+		<description>A very simple multiplayer game, with two players controlling a paddle each.</description>
+	</example>
+	<example filename="Multiple colored shadowlights.capx">
+		<name>Multiple colored shadow-casting lights</name>
+		<level>2</level>
+		<description>Demonstrates an advanced lighting effect with three moving colored shadow-casting lights that blend with each other.</description>
+	</example>
+	<example filename="Particle effect demo.capx">
+		<name>Particle effect</name>
+		<level>0</level>
+		<description>An example of a full-screen particle effect.</description>
+	</example>
+	<example filename="Particle single fountain.capx">
+		<name>Particle single fountain</name>
+		<level>0</level>
+		<description>A fountain effect created with the Particles object.</description>
+	</example>
+	<example filename="Particle double fountain.capx">
+		<name>Particle double fountain</name>
+		<level>0</level>
+		<description>Two fountains created with the Particles object.</description>
+	</example>
+	<example filename="Particle explosions.capx">
+		<name>Particle explosions</name>
+		<level>0</level>
+		<description>Use one-shot particle objects to create an explosion effect.</description>
+	</example>
+	<example filename="Particle fire.capx">
+		<name>Particle fire</name>
+		<level>0</level>
+		<description>Using the Particles object to create a fire effect.</description>
+	</example>
+	<example filename="Particle thruster.capx">
+		<name>Particle thruster</name>
+		<level>1</level>
+		<description>Using the Particles object to create a controlled space ship thruster effect.</description>
+	</example>
+	<example filename="Pathfinding.capx">
+		<name>Pathfinding demo</name>
+		<level>2</level>
+		<description>An example of how the Pathfinding behavior can return a path around obstacles and move an object along it.</description>
+	</example>
+	<example filename="Pathfinding - path cost.capx">
+		<name>Pathfinding path cost</name>
+		<level>2</level>
+		<description>Shows how using objects to increase path cost can make the behavior take detours. Useful for simulating different terrain types.</description>
+	</example>
+	<example filename="Persistent layouts.capx">
+		<name>Persistent layouts</name>
+		<level>1</level>
+		<description>Shows how to use the Persist behavior to make layouts which remember their state when you come back to them later.</description>
+	</example>
+	<example filename="Physics - basics.capx">
+		<name>Physics basics</name>
+		<level>0</level>
+		<description>A simple demo of how the Physics behavior works.</description>
+	</example>
+	<example filename="Physics - force point.capx">
+		<name>Physics force point</name>
+		<level>1</level>
+		<description>Shows how movement is affected by changing the point a force is applied from.</description>
+	</example>
+	<example filename="Physics - distance joint.capx">
+		<name>Physics distance joint</name>
+		<level>1</level>
+		<description>Connect two Physics objects with a distance joint.</description>
+	</example>
+	<example filename="Physics - revolute joint.capx">
+		<name>Physics revolute joint</name>
+		<level>1</level>
+		<description>Hinge together two Physics objects with a revolute joint.</description>
+	</example>
+	<example filename="Physics - vehicle.capx">
+		<name>Physics vehicle</name>
+		<level>1</level>
+		<description>Shows how to make contraptions like this vehicle by using multiple Physics joints.</description>
+	</example>
+	<example filename="Physics - ragdoll.capx">
+		<name>Physics ragdoll</name>
+		<level>2</level>
+		<description>Create a ragdoll effect using a series of Physics joints.</description>
+	</example>
+	<example filename="Physics - rolling platformer.capx">
+		<name>Physics rolling platformer</name>
+		<level>2</level>
+		<description>Re-creating a platform style movement using a rolling object and the Physics behavior.</description>
+	</example>
+	<example filename="Pick Nearest.capx">
+		<name>Pick Nearest</name>
+		<level>0</level>
+		<description>Shows how to highlight the object nearest the mouse using the 'Pick nearest' condition.</description>
+	</example>
+	<example filename="Pin behavior.capx">
+		<name>Pin behavior</name>
+		<level>0</level>
+		<description>Demonstrates how the Pin behavior can be used to connect objects.</description>
+	</example>
+	<example filename="Pin chain style.capx">
+		<name>Pin chain style</name>
+		<level>2</level>
+		<description>Create a rigid chain of objects by pinning together a line of sprites.</description>
+	</example>
+	<example filename="Pin rope style.capx">
+		<name>Pin rope style</name>
+		<level>2</level>
+		<description>Create a loose "rope" of objects by pinning together a line of sprites.</description>
+	</example>
+	<example filename="Platform 1 (simple movement).capx">
+		<name>Platform behavior (part 1)</name>
+		<level>0</level>
+		<description>A simple demo of the Platform movement behavior.</description>
+	</example>
+	<example filename="Platform 2 (scrolling).capx">
+		<name>Platform behavior (part 2)</name>
+		<level>0</level>
+		<description>Adds scrolling to the previous example.</description>
+	</example>
+	<example filename="Platform 3 (UI).capx">
+		<name>Platform behavior (part 3)</name>
+		<level>0</level>
+		<description>Use zero-parallax layers to display objects on a fixed place on the screen.</description>
+	</example>
+	<example filename="Platform 4 (custom controls).capx">
+		<name>Platform behavior (part 4)</name>
+		<level>0</level>
+		<description>How to change which keys are used to control a behavior.</description>
+	</example>
+	<example filename="Platform 5 (fullscreen).capx">
+		<name>Platform behavior (part 5)</name>
+		<level>0</level>
+		<description>The previous example but now showing in the full browser window.</description>
+	</example>
+	<example filename="Platform 6 (slopes and moving platforms).capx">
+		<name>Platform behavior (part 6)</name>
+		<level>0</level>
+		<description>Demonstrates how the Platform behavior can handle slopes and moving platforms.</description>
+	</example>
+	<example filename="Platform 7 (parallax).capx">
+		<name>Platform behavior (part 7)</name>
+		<level>0</level>
+		<description>How to use layers to create a parallax scrolling effect.</description>
+	</example>
+	<example filename="Platform 8 (shake).capx">
+		<name>Platform behavior (part 8)</name>
+		<level>0</level>
+		<description>How to shake the screen with the Scroll To behavior.</description>
+	</example>
+	<example filename="Platform 9 (jump-thru).capx">
+		<name>Platform behavior (part 9)</name>
+		<level>0</level>
+		<description>Demonstrates how the player can jump on to objects from underneath with the 'Jump-thru' behavior.</description>
+	</example>
+	<example filename="Positioned audio.capx">
+		<name>Positioned audio</name>
+		<level>1</level>
+		<description>An example of a layout with several positioned sound sources in it, where the audio pan and volume adjusts depending on the location.</description>
+	</example>
+	<example filename="Rotating platformer.capx">
+		<name>Rotating platformer</name>
+		<level>1</level>
+		<description>Use rotating layers and changing gravity angle to make a platform game that spirals in a circle.</description>
+	</example>
+	<example filename="Savegames.capx">
+		<name>Savegames</name>
+		<level>1</level>
+		<description>The Ghost Shooter tutorial modified to support full-state savegames using the System object 'Save' and 'Load' actions.</description>
+	</example>
+	<example filename="Sine behavior - types.capx">
+		<name>Sine behavior types</name>
+		<level>0</level>
+		<description>Demonstrates each type of Sine movement the behavior provides.</description>
+	</example>
+	<example filename="Shadows - colors.capx">
+		<name>Shadows - colors</name>
+		<level>1</level>
+		<description>Using three lights with opacity and different shadow colors to create a colorful multiple light effect.</description>
+	</example>
+	<example filename="Shadows - height.capx">
+		<name>Shadows - light height</name>
+		<level>0</level>
+		<description>An example of a real-time shadow effect using the Shadow Light object and Shadow Caster behavior.</description>
+	</example>
+	<example filename="Shadows - penumbra.capx">
+		<name>Shadows - soft penumbras</name>
+		<level>0</level>
+		<description>Another shadow example that uses a light radius to cast soft-edged shadows penumbras in WebGL mode.</description>
+	</example>
+	<example filename="Sine behavior - grass.capx">
+		<name>Sine behavior grass effect</name>
+		<level>0</level>
+		<description>A simple use of the Sine behavior for a waving grass effect.</description>
+	</example>
+	<example filename="Speech recognition.capx">
+		<name>Speech recognition</name>
+		<level>1</level>
+		<description>How to use the User Media object to recognise words spoken by the user in to a microphone.</description>
+	</example>
+	<example filename="Speech synthesis.capx">
+		<name>Speech synthesis</name>
+		<level>1</level>
+		<description>How to use the User Media object to read out some text (also known as text-to-speech or TTS).</description>
+	</example>
+	<example filename="Taking screenshots.capx">
+		<name>Taking screenshots</name>
+		<level>1</level>
+		<description>How to use canvas snapshots and the Browser object to take screenshots and download them as image files.</description>
+	</example>
+	<example filename="The 'Wait' action.capx">
+		<name>The 'Wait' action</name>
+		<level>0</level>
+		<description>A simple example of how to use the system 'Wait' action to schedule actions.</description>
+	</example>
+	<example filename="Tilemap.capx">
+		<name>Tilemaps</name>
+		<level>0</level>
+		<description>A simple example of how tile-based games can be more easily designed using the Tilemap object.</description>
+	</example>
+	<example filename="Touch - panning.capx">
+		<name>Touch - panning</name>
+		<level>0</level>
+		<description>How to scroll around a layout using touch input to pan the view.</description>
+	</example>
+	<example filename="Touch - zooming.capx">
+		<name>Touch - zooming</name>
+		<level>1</level>
+		<description>How to both scroll and scale a layout based on single and double touches.</description>
+	</example>
+	<example filename="Touch - rotate.capx">
+		<name>Touch - rotating</name>
+		<level>1</level>
+		<description>How to both scroll and rotate a layout based on single and double touches.</description>
+	</example>
+	<example filename="Turret behavior.capx">
+		<name>Turret behavior</name>
+		<level>1</level>
+		<description>A simple example of using the Turret behavior to aim and fire at objects in range.</description>
+	</example>
+	<example filename="Turret predictive aim.capx">
+		<name>Turret predictive aim</name>
+		<level>2</level>
+		<description>Using the Turret behavior's predictive aim feature to aim more accurately at moving targets.</description>
+	</example>
+	<example filename="Unique IDs (UIDs).capx">
+		<name>Unique IDs (UIDs)</name>
+		<level>2</level>
+		<description>An introduction to UIDs, which can be used to store a reference individual instances.</description>
+	</example>
+	<example filename="Vibrate.capx">
+		<name>Vibrate</name>
+		<level>0</level>
+		<description>An example of the Browser object's 'Vibrate' action to vibrate a mobile device.</description>
+	</example>
+	<example filename="Webcam.capx">
+		<name>Webcam</name>
+		<level>1</level>
+		<description>Get a webcam feed from the user's camera using the User Media object.</description>
+	</example>
+	<example filename="Webcam effects.capx">
+		<name>Webcam effects</name>
+		<level>1</level>
+		<description>A demo of applying effects to the User Media object.</description>
+	</example>
+	<example filename="Webcam - face shape.capx">
+		<name>Webcam face shape</name>
+		<level>2</level>
+		<description>Cut out a shape from a webcam feed using layer masks with the User Media object.</description>
+	</example>
+	<example filename="WebGL shader effects.capx">
+		<name>WebGL shader effect</name>
+		<level>0</level>
+		<description>A simple example of advanced visual effects using WebGL shaders.</description>
+	</example>
+	<example filename="WebGL shader 'old TV' effect.capx">
+		<name>WebGL old TV effect</name>
+		<level>0</level>
+		<description>Using multiple WebGL shaders to create an old TV appearance.</description>
+	</example>
+	<example filename="WebGL shader 'haze' effect.capx">
+		<name>WebGL haze effect</name>
+		<level>1</level>
+		<description>A subtle heat haze effect using WebGL shaders.</description>
+	</example>
+	<example filename="WebGL screen blend with fallback.capx">
+		<name>WebGL screen blend &amp; fallback</name>
+		<level>1</level>
+		<description>Use WebGL effects for advanced blending with a fallback for systems that do not support it.</description>
+	</example>
+	<example filename="WebGL shader luminance transition.capx">
+		<name>WebGL luminance transition</name>
+		<level>2</level>
+		<description>An advanced luminance based transition based on WebGL effects.</description>
+	</example>
+	<example filename="WebGL shader 'pixellate' transition.capx">
+		<name>WebGL pixellate transition</name>
+		<level>2</level>
+		<description>An advanced pixellation transition based on WebGL effects.</description>
+	</example>
+	<example filename="WebGL shader 'ripple' transition.capx">
+		<name>WebGL ripple transition</name>
+		<level>2</level>
+		<description>An advanced ripple transition based on WebGL effects.</description>
+	</example>
+	<example filename="WebGL shader 'swirl' transition.capx">
+		<name>WebGL swirl transition</name>
+		<level>2</level>
+		<description>An advanced swirl transition based on WebGL effects.</description>
+	</example>
+	<example filename="WebGL shader 'water' transition.capx">
+		<name>WebGL water transition</name>
+		<level>2</level>
+		<description>An advanced water transition based on WebGL effects.</description>
+	</example>
+	<example filename="XML.capx">
+		<name>XML</name>
+		<level>2</level>
+		<description>Use XPath to get data from XML documents.</description>
+	</example>
+</startdlg>
