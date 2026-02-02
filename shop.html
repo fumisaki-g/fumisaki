@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DEXTER SHOP</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --card: #1a1a1a;
+      --orange: #ff7a00;
+      --text: #eaeaea;
+      --muted: #9a9a9a;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 20%, #1a0f05 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, #1a1205 0%, transparent 40%),
+        linear-gradient(120deg, #0b0b0b, #141414, #0f0f0f);
+      background-size: 200% 200%;
+      animation: bgMove 18s ease infinite;
+
+    }
+
+    @keyframes bgMove {
+      0% {
+        background-position: 0% 50%
+      }
+
+      50% {
+        background-position: 100% 50%
+      }
+
+      100% {
+        background-position: 0% 50%
+      }
+    }
+
+    /* ---------- NAV ---------- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 18px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, .7), transparent);
+      z-index: 10;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 30px;
+      font-size: 14px;
+      opacity: .8;
+    }
+
+    nav a.active {
+      color: var(--orange);
+      opacity: 1
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      min-height: 100vh;
+      padding: 140px 60px;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 40px;
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      letter-spacing: 2px;
+      color: var(--orange);
+    }
+
+    .hero p {
+      max-width: 520px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .logo {
+      justify-self: end;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background:
+        repeating-linear-gradient(to bottom,
+          var(--orange) 0 6px,
+          transparent 6px 12px);
+      animation: spin 18s linear infinite;
+      mask: radial-gradient(circle at center, black 55%, transparent 56%);
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg)
+      }
+
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    /* ---------- SECTION ---------- */
+    section {
+      padding: 100px 60px;
+    }
+
+    h2 {
+      color: var(--orange);
+      margin-bottom: 40px;
+      font-size: 32px;
+    }
+
+    /* ---------- SERVICE CARDS ---------- */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: var(--orange);
+      color: #000;
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 0 0 rgba(255, 122, 0, 0);
+      transition: .4s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(255, 122, 0, .35);
+    }
+
+    /* ---------- PROCESS ---------- */
+    .process {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .process-box {
+      background: var(--orange);
+      color: #000;
+      padding: 30px;
+      border-radius: 20px;
+    }
+
+    .process-box li {
+      margin: 14px 0;
+    }
+
+    /* ---------- NOTICE ---------- */
+    .notice {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .notice span {
+      color: var(--orange);
+    }
+
+    /* ---------- PACKAGE ---------- */
+    .packages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+    }
+
+    .package {
+      background: var(--orange);
+      color: #000;
+      padding: 30px;
+      border-radius: 20px;
+      transition: .4s;
+    }
+
+    .package:hover {
+      transform: scale(1.05);
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .contact div {
+      background: var(--orange);
+      color: #000;
+      padding: 20px;
+      border-radius: 14px;
+    }
+
+    /* ---------- ANIMATE ON SCROLL ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 1s;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: none;
+    }
+
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .particles span {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgba(255, 122, 0, .35);
+      border-radius: 50%;
+      animation: float linear infinite;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 1
+      }
+
+      to {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="particles"></div>
+
+  <nav>
+    <strong>DEXTER</strong>
+    <div>
+      <a href="home.html" class="active">กลับไปยังหน้าเดิม</a>
+      <a href="#service">บริการ</a>
+      <a href="#notice">ข้อควรทราบ</a>
+      <a href="#process">ขั้นตอนการทำงาน</a>
+    </div>
+  </nav>
+
+  <div class="hero" id="home">
+    <div>
+      <h1>DEXTER SHOP</h1>
+      <p>
+        ผู้ให้บริการดูแลและบำรุงรักษาคอมพิวเตอร์แบบครบวงจร
+        เชี่ยวชาญด้านการทำความสะอาดระบบระบายความร้อน แก้ไขปัญหาคอมพิวเตอร์ทำงานช้า ค้าง หรือไม่เสถียร
+        ให้คำปรึกษาอย่างตรงจุด พร้อมวิเคราะห์ปัญหาอย่างเป็นระบบ
+        เน้นงานคุณภาพในราคาที่เข้าถึงได้ ดำเนินงานรวดเร็ว รับเครื่องและส่งคืนภายในวันถัดไปในกรณีงานทั่วไป
+        ใส่ใจทุกรายละเอียด เพื่อให้คอมพิวเตอร์กลับมาทำงานได้อย่างมีประสิทธิภาพและมั่นใจในการใช้งาน
+      </p>
+    </div>
+    <div class="logo"></div>
+  </div>
+
+  <section id="service">
+    <h2>บริการ</h2>
+    <div class="services">
+      <div class="card reveal">
+        ทำความสะอาดคอมพิวเตอร์ / โน้ตบุ๊ก<br><br>
+        100–200 บาท / เครื่อง
+      </div>
+      <div class="card reveal">
+        แก้ปัญหาคอมช้า คอมอืด<br><br>
+        100–300 บาท
+      </div>
+      <div class="card reveal">
+        ตรวจเช็กอาการเบื้องต้น<br><br>
+        ฟรี / 20–30 นาที
+      </div>
+    </div>
+  </section>
+
+  <section id="notice">
+    <h2>ข้อควรทราบก่อนใช้บริการ</h2>
+    <div class="notice reveal">
+      ข้อควรทราบก่อนใช้บริการ
+      ทางร้านทำรับจ้างแบบเล็กๆรับเฉพาะงานที่ทำคล่องและปลอดภัย,ไม่รับงานซ่อมหรือเปลี่ยนอุปกรณ์ใดๆ
+      รับเฉพาะแบรนด์ <span>Acer , Lenovo , hp</span>
+      ,ทางร้านจะนำ computer , notebook ของท่านที่จะมาใช้บริการ นำกลับไปทำที่ร้านค้า จึงจะต้องนำ computer หรือ notebook
+      ของท่านฝากไว้และ<span>ได้รับคืนในวันถัดไป</span>
+      ,งานทำความสะอาดและแก้คอมอืด <span>ไม่รับประกัน</span>ว่าเครื่องจะเร็วเท่าเครื่องใหม่,
+      <span>ไม่รับผิดชอบ</span>ข้อมูลที่สูญหาย แนะนำให้ลูกค้าสำรองข้อมูลก่อนทุกครั้ง
+      ,งานเร่งด่วนหรืออาการหนัก อาจใช้เวลามากกว่า 1 วัน (จะแจ้งให้ทราบก่อนทำ)
+    </div>
+  </section>
+
+  <section id="process">
+    <h2>ขั้นตอนการทำงาน</h2>
+    <div class="process">
+      <div class="process-box reveal">
+        <ul>
+          <li>แจ้งอาการและรุ่นเครื่อง</li>
+          <li>ประเมินงานและราคา</li>
+          <li>ดำเนินการซ่อมหรือทำความสะอาด</li>
+          <li>ทดสอบเครื่องก่อนส่งคืน</li>
+          <li>นัดรับเครื่องคืน</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section>
+    <h2>บริการแบบเหมา</h2>
+    <div class="packages">
+      <div class="package reveal">
+        Basic Care<br><br>
+        100–200 บาท / เครื่อง
+      </div>
+      <div class="package reveal">
+        Deep Care<br><br>
+        150–200 บาท / เครื่อง
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>สนใจติดต่อได้ที่</h2>
+    <div class="contact">
+      <div class="reveal">PHONE<br>080-863-7017</div>
+      <div class="reveal">EMAIL<br>pannakvuthik@gmail.com</div>
+      <div class="reveal">FACEBOOK<br>General fumi</div>
+    </div>
+  </section>
+
+  <script>
+    const reveal = document.querySelectorAll('.reveal')
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('show')
+      })
+    }, { threshold: .15 })
+    reveal.forEach(el => io.observe(el))
+
+    const p = document.querySelector('.particles')
+    for (let i = 0; i < 80; i++) {
+      const s = document.createElement('span')
+      s.style.left = Math.random() * 100 + '%'
+      s.style.animationDuration = 10 + Math.random() * 20 + 's'
+      s.style.animationDelay = Math.random() * 10 + 's'
+      p.appendChild(s)
+    }
+
+
+  </script>
+
+</body>
+
+</html>
