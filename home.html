@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Vuthikorn | Digital Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Prompt:wght@200;400;600&display=swap" rel="stylesheet">
     
@@ -11,10 +11,10 @@
             --primary-color: #39ff14;
             --bg-dark: #050505;
             --glass: rgba(255, 255, 255, 0.05);
-            --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
 
         body {
@@ -22,185 +22,171 @@
             background: var(--bg-dark);
             color: #ffffff;
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
-        /* ---------- Background FX ---------- */
+        /* ---------- Background Rings (Optimized for Mobile) ---------- */
         #rings-container {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            perspective: 1000px;
-            overflow: hidden;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; perspective: 800px; overflow: hidden; opacity: 0.5;
         }
 
-        /* ---------- Sidebar Navigation ---------- */
+        /* ---------- Menu Button (Larger for Touch) ---------- */
         .menu-trigger {
-            position: fixed; top: 30px; right: 30px; z-index: 1001;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: white; padding: 12px 25px; border-radius: 50px;
-            cursor: pointer; font-weight: 600; transition: var(--transition);
+            position: fixed; top: 20px; right: 20px; z-index: 1001;
+            background: var(--primary-color); color: #000;
+            border: none; padding: 10px 20px; border-radius: 30px;
+            cursor: pointer; font-weight: 700; box-shadow: 0 5px 15px rgba(57,255,20,0.3);
         }
-        .menu-trigger:hover { background: var(--primary-color); color: #000; transform: scale(1.1); }
 
+        /* ---------- Sidebar (Mobile Responsive) ---------- */
         .sidebar {
-            position: fixed; top: 0; right: -100%; width: 400px; height: 100%;
-            background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
+            position: fixed; top: 0; right: -100%; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.98); backdrop-filter: blur(15px);
             z-index: 1000; transition: var(--transition);
-            display: flex; align-items: center; padding: 60px;
+            display: flex; align-items: center; justify-content: center;
         }
+        @media (min-width: 768px) { .sidebar { width: 400px; } }
         .sidebar.active { right: 0; }
-        .sidebar-links { list-style: none; }
-        .sidebar-links li { margin: 30px 0; opacity: 0; transform: translateX(50px); transition: 0.5s; }
-        .sidebar.active li { opacity: 1; transform: translateX(0); }
-        .sidebar-links a {
-            color: #fff; text-decoration: none; font-size: 32px; font-weight: 700;
-            transition: 0.3s; position: relative;
-        }
-        .sidebar-links a:hover { color: var(--primary-color); padding-left: 20px; }
+        .sidebar-links { list-style: none; text-align: center; }
+        .sidebar-links li { margin: 25px 0; }
+        .sidebar-links a { color: #fff; text-decoration: none; font-size: 2rem; font-weight: 700; }
 
-        /* ---------- Hero Section (จุดแนะนำตัว) ---------- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        
+        /* ---------- Container ---------- */
+        .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 25px; }
+
+        /* ---------- Hero Section (Responsive) ---------- */
         .hero {
-            height: 100vh;
-            display: flex; flex-direction: column; justify-content: center;
-            align-items: center; text-align: center;
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding-top: 60px;
         }
 
         .hero h1 {
-            font-size: clamp(40px, 8vw, 100px);
-            font-weight: 700; line-height: 1; margin-bottom: 20px;
-            background: linear-gradient(to bottom, #fff 30%, #666);
+            font-size: clamp(2.5rem, 12vw, 6rem);
+            font-weight: 800; line-height: 0.9; margin-bottom: 15px;
+            background: linear-gradient(to bottom, #fff, #666);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
+        /* Hero Images Grid - สำคัญมากสำหรับการรองรับมือถือ */
         .hero-images {
-            display: flex; gap: 20px; margin-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* มือถือโชว์แถวละ 2 รูป */
+            gap: 15px; margin-top: 40px; width: 100%;
+        }
+        @media (min-width: 768px) {
+            .hero-images { grid-template-columns: repeat(4, 1fr); } /* คอมโชว์ 4 รูป */
         }
         .hero-images img {
-            width: 150px; height: 200px; object-fit: cover;
-            border-radius: 15px; border: 1px solid rgba(255,255,255,0.2);
-            transition: var(--transition);
+            width: 100%; aspect-ratio: 3/4; object-fit: cover;
+            border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);
         }
-        .hero-images img:hover { transform: translateY(-20px) scale(1.1); border-color: var(--primary-color); }
 
-        /* ---------- Content Sections (เนื้อหาย่อย) ---------- */
-        section { padding: 150px 0; opacity: 0; transform: translateY(50px); transition: var(--transition); }
+        /* ---------- Content Sections ---------- */
+        section { padding: 100px 0; opacity: 0; transform: translateY(30px); transition: var(--transition); }
         section.reveal-active { opacity: 1; transform: translateY(0); }
 
-        .section-title { font-size: 40px; margin-bottom: 50px; border-left: 5px solid var(--primary-color); padding-left: 20px; }
+        .section-title { font-size: 1.8rem; margin-bottom: 30px; color: var(--primary-color); }
 
         .gallery {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
+            display: grid; grid-template-columns: 1fr; /* มือถือเรียงเดี่ยว */
+            gap: 20px;
+        }
+        @media (min-width: 768px) {
+            .gallery { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); } /* คอมเรียงตามขนาด */
         }
         .card {
-            background: var(--glass); border-radius: 20px; padding: 20px;
-            border: 1px solid rgba(255,255,255,0.1); transition: 0.5s;
+            background: var(--glass); border-radius: 15px; padding: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
-        .card:hover { background: rgba(57, 255, 20, 0.05); border-color: var(--primary-color); transform: translateY(-10px); }
-        .card img { width: 100%; border-radius: 15px; margin-bottom: 20px; }
+        .card img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
 
-        /* ---------- Animations ---------- */
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(2deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
+        /* Footer */
+        footer { padding: 50px 0; text-align: center; border-top: 1px solid #111; font-size: 0.8rem; color: #555; }
     </style>
 </head>
 <body>
 
     <div id="rings-container"></div>
-
     <button class="menu-trigger" onclick="toggleSidebar()">MENU</button>
 
     <nav class="sidebar" id="sidebar">
         <ul class="sidebar-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#work">Works</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home" onclick="toggleSidebar()">Home</a></li>
+            <li><a href="#work" onclick="toggleSidebar()">Activities</a></li>
+            <li><a href="mailto:s08244@phrabang.ac.th">Contact</a></li>
         </ul>
     </nav>
 
     <main class="container">
-        <section id="home" class="hero">
+        <section id="home" class="hero reveal-active" style="opacity: 1; transform: none;">
             <h1>VUTHIKORN<br>FUMISAKI</h1>
-            <p style="font-size: 1.2rem; color: #888; letter-spacing: 5px;">DIGITAL DEVELOPER & GAMER</p>
+            <p style="color: #39ff14; letter-spacing: 3px; font-weight: 600;">PORTFOLIO 2026</p>
+            
             <div class="hero-images">
                 <img src="picture/me.jpg" alt="me">
                 <img src="picture/me2.jpg" alt="me">
+                <img src="picture/me-5.jpg" alt="me">
                 <img src="picture/me3.jpg" alt="me">
             </div>
         </section>
 
         <section id="work">
-            <h2 class="section-title">Latest Activities</h2>
+            <h2 class="section-title">Activities</h2>
             <div class="gallery">
                 <div class="card">
-                    <img src="picture/conten-me.jpg" alt="activity">
-                    <h3>Arts & Crafts #73</h3>
-                    <p>Computer Game Creation @Nakhon Sawan School</p>
+                    <img src="picture/conten-me.jpg" alt="event">
+                    <h3>Game Creation #73</h3>
+                    <p>ร่วมแข่งขันการสร้างเกมระดับประเทศ</p>
                 </div>
                 <div class="card">
-                    <img src="picture/cnoten4.jpg" alt="activity">
-                    <h3>Sudoku Champion</h3>
-                    <p>3rd Place @Phrabang Wittaya School</p>
+                    <img src="picture/cnoten4.jpg" alt="event">
+                    <h3>Sudoku Winner</h3>
+                    <p>รางวัลชนะเลิศอันดับ 3 การแข่งขันซูโดกุ</p>
                 </div>
             </div>
         </section>
     </main>
 
+    <footer>
+        <p>&copy; 2026 Vuthikorn Fumisaki. All Rights Reserved.</p>
+    </footer>
+
     <script>
-        // 1. Sidebar Toggle
+        // Sidebar Toggle
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('active');
-            const btn = document.querySelector('.menu-trigger');
-            btn.innerHTML = sidebar.classList.contains('active') ? 'CLOSE' : 'MENU';
         }
 
-        // 2. 3D Rings Background
+        // 3D Rings Background (Optimized)
         const container = document.getElementById('rings-container');
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 4; i++) {
             const ring = document.createElement('div');
             ring.style.cssText = `
                 position: absolute; top: 50%; left: 50%;
-                width: ${200 + i * 120}px; height: ${200 + i * 120}px;
-                border: 1px solid rgba(57, 255, 20, ${0.1 + i * 0.05});
-                border-radius: 50%; transform-style: preserve-3d;
-                margin-top: -${(200 + i * 120)/2}px; margin-left: -${(200 + i * 120)/2}px;
-                animation: rotateRing ${10 + i * 5}s linear infinite;
+                width: ${150 + i * 80}px; height: ${150 + i * 80}px;
+                border: 1px solid rgba(57, 255, 20, 0.2);
+                border-radius: 50%;
+                margin-top: -${(150 + i * 80)/2}px; margin-left: -${(150 + i * 80)/2}px;
+                animation: rotateRing ${15 + i * 5}s linear infinite;
             `;
             container.appendChild(ring);
         }
 
-        // เพิ่ม CSS Keyframes สำหรับวงแหวนแบบ Dynamic
         const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes rotateRing {
-                0% { transform: rotateX(60deg) rotateY(0deg) rotateZ(0deg); }
-                100% { transform: rotateX(60deg) rotateY(360deg) rotateZ(360deg); }
-            }
-        `;
+        style.innerHTML = ` @keyframes rotateRing { 0% { transform: rotateX(70deg) rotateY(0deg); } 100% { transform: rotateX(70deg) rotateY(360deg); } } `;
         document.head.appendChild(style);
 
-        // 3. Scroll Reveal Animation (ตาแตก!)
-        const observerOptions = { threshold: 0.2 };
+        // Scroll Reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal-active');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('reveal-active');
             });
-        }, observerOptions);
-
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('section').forEach(s => observer.observe(s));
     </script>
 </body>
 </html>
