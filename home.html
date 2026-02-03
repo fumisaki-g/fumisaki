@@ -3,122 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Vuthikorn | Digital Portfolio</title>
+    <title>Vuthikorn | Portfolio Unlimited</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Prompt:wght@200;400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #2db300; /* เข้มขึ้นจากเดิม */
+            --primary-color: #1a6600; 
             --neon-color: #39ff14;
             --bg-dark: #050505;
             --glass: rgba(255, 255, 255, 0.05);
-            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', 'Prompt', sans-serif; background: var(--bg-dark); color: #ffffff; overflow-x: hidden; }
+        body { font-family:'Inter','Prompt',sans-serif; background:var(--bg-dark); color:#fff; overflow-x:hidden; }
 
-        /* ---------- 3D Rings (เข้มขึ้น + เรืองแสง) ---------- */
-        #rings-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; perspective: 1000px; overflow: hidden;
-        }
+        /* Background Rings */
+        #rings-container { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; perspective:1000px; }
 
-        /* ---------- Sidebar (Auto-Hide Ready) ---------- */
-        .menu-trigger {
-            position: fixed; top: 20px; right: 20px; z-index: 1002;
-            background: var(--primary-color); color: #000;
-            border: none; padding: 12px 25px; border-radius: 30px;
-            cursor: pointer; font-weight: 800; box-shadow: 0 0 20px rgba(57,255,20,0.4);
-        }
+        /* Menu */
+        .menu-trigger { position:fixed; top:20px; right:20px; z-index:1002; background:var(--neon-color); color:#000; border:none; padding:12px 25px; border-radius:30px; cursor:pointer; font-weight:800; }
+        .sidebar { position:fixed; top:0; right:-100%; width:100%; height:100%; background:rgba(0,0,0,0.95); backdrop-filter:blur(20px); z-index:1001; transition:0.5s; display:flex; align-items:center; justify-content:center; }
+        @media(min-width:768px){.sidebar{width:400px;}}
+        .sidebar.active { right:0; }
+        .sidebar-links { list-style:none; text-align:center; }
+        .sidebar-links a { color:#fff; text-decoration:none; font-size:2rem; font-weight:700; display:block; margin:20px 0; }
 
-        .sidebar {
-            position: fixed; top: 0; right: -100%; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
-            z-index: 1001; transition: var(--transition);
-            display: flex; align-items: center; justify-content: center;
-        }
-        @media (min-width: 768px) { .sidebar { width: 400px; } }
-        .sidebar.active { right: 0; }
-        .sidebar-links { list-style: none; text-align: center; }
-        .sidebar-links li { margin: 30px 0; }
-        .sidebar-links a { 
-            color: #fff; text-decoration: none; font-size: 2rem; font-weight: 700;
-            transition: 0.3s;
-        }
-        .sidebar-links a:hover { color: var(--neon-color); letter-spacing: 2px; }
+        /* Layout */
+        .container { width:100%; max-width:1200px; margin:0 auto; padding:0 20px; }
+        section { padding:100px 0; opacity:0; transform:translateY(30px); transition:1s; }
+        section.reveal-active { opacity:1; transform:translateY(0); }
+        .section-title { font-size:2rem; margin-bottom:30px; color:var(--neon-color); }
 
-        /* ---------- Hero & Responsive Slider ---------- */
-        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        
-        .hero {
-            min-height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
-            padding: 80px 0 40px;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.8rem, 10vw, 6rem);
-            font-weight: 800; line-height: 1; margin-bottom: 10px;
-            text-shadow: 0 0 30px rgba(255,255,255,0.2);
-        }
-
-        /* ปรับปรุงส่วนรูปภาพให้เลื่อนสไลด์ในมือถือ */
-        .hero-images {
+        /* --- Shared Slider CSS (ใช้ร่วมกันทั้งเว็บ) --- */
+        .horizontal-slider {
             display: flex;
             gap: 20px;
-            margin-top: 40px;
-            width: 100%;
-            overflow-x: auto; /* เปิดการเลื่อนแนวนอน */
-            padding: 20px;
-            scroll-snap-type: x mandatory; /* ให้รูปหยุดตรงกลางพอดีเมื่อเลื่อน */
-            scrollbar-width: none; /* ซ่อน scrollbar ใน Firefox */
+            overflow-x: auto;
+            padding: 20px 0;
+            scrollbar-width: none; /* Firefox */
+            scroll-snap-type: x mandatory;
         }
-        .hero-images::-webkit-scrollbar { display: none; } /* ซ่อน scrollbar ใน Chrome/Safari */
+        .horizontal-slider::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
-        .hero-images img {
-            flex: 0 0 280px; /* บังคับให้รูปมีขนาดคงที่ในมือถือเพื่อไม่ให้เบียด */
-            height: 380px;
-            object-fit: cover;
-            border-radius: 20px;
-            border: 2px solid rgba(255,255,255,0.1);
-            scroll-snap-align: center;
-            transition: transform 0.5s;
-        }
-        
-        @media (min-width: 768px) {
-            .hero-images {
-                overflow: visible;
-                justify-content: center;
-                scroll-snap-type: none;
-            }
-            .hero-images img {
-                flex: 0 1 200px;
-                height: 300px;
-            }
-            .hero-images img:hover { transform: scale(1.1) translateY(-10px); border-color: var(--neon-color); }
-        }
-
-        /* ---------- Sections & Gallery ---------- */
-        section { padding: 100px 0; opacity: 0; transform: translateY(40px); transition: 1s ease; }
-        section.reveal-active { opacity: 1; transform: translateY(0); }
-
-        .section-title { font-size: 2rem; margin-bottom: 40px; color: var(--neon-color); text-transform: uppercase; }
-
-        .gallery {
-            display: grid; grid-template-columns: 1fr; gap: 25px;
-        }
-        @media (min-width: 768px) { .gallery { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); } }
-        
         .card {
-            background: var(--glass); border-radius: 20px; padding: 20px;
-            border: 1px solid rgba(255,255,255,0.05); transition: 0.4s;
+            flex: 0 0 280px; /* ขนาดการ์ด */
+            background: var(--glass);
+            border-radius: 20px;
+            padding: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+            scroll-snap-align: center;
+            transition: 0.4s;
         }
-        .card:hover { border-color: var(--neon-color); transform: scale(1.02); }
-        .card img { width: 100%; border-radius: 15px; margin-bottom: 20px; }
+        .card:hover { border-color: var(--neon-color); transform: translateY(-10px); }
+        .card img { width: 100%; height: 350px; object-fit: cover; border-radius: 15px; margin-bottom: 15px; }
+        .card h3 { font-size: 1.1rem; margin-bottom: 5px; }
+        .card p { font-size: 0.9rem; color: #aaa; }
 
-        footer { padding: 80px 0; text-align: center; border-top: 1px solid #111; color: #444; }
+        @media(min-width:768px){ .card { flex: 0 0 320px; } }
     </style>
 </head>
 <body>
@@ -130,85 +72,73 @@
         <ul class="sidebar-links">
             <li><a href="#home" onclick="toggleSidebar()">HOME</a></li>
             <li><a href="#work" onclick="toggleSidebar()">ACTIVITIES</a></li>
-            <li><a href="shop.html" onclick="toggleSidebar()">SHOP</a></li>
-            <li><a href="mailto:s08244@phrabang.ac.th" onclick="toggleSidebar()">CONTACT</a></li>
         </ul>
     </nav>
 
     <main class="container">
-        <section id="home" class="hero reveal-active" style="opacity:1; transform:none;">
-            <h1>VUTHIKORN<br>FUMISAKI</h1>
-            <p style="color: var(--neon-color); font-weight: 600; letter-spacing: 5px;">[ Phrabang Student ]</p>
+        <section id="home" class="reveal-active" style="opacity:1; transform:none; text-align:center;">
+            <h1 style="font-size:clamp(3rem, 10vw, 6rem);">VUTHIKORN</h1>
+            <p style="color:var(--neon-color); letter-spacing:5px; margin-bottom:30px;">[ SLIDE TO VIEW ME ]</p>
             
-            <div class="hero-images">
-                <img src="picture/me.jpg" alt="me">
-                <img src="picture/me2.jpg" alt="me">
-                <img src="picture/me-5.jpg" alt="me">
-                <img src="picture/me3.jpg" alt="me">
-            </div>
+            <div class="horizontal-slider">
+                <div class="card"><img src="picture/me.jpg"></div>
+                <div class="card"><img src="picture/me2.jpg"></div>
+                <div class="card"><img src="picture/me-5.jpg"></div>
+                <div class="card"><img src="picture/me3.jpg"></div>
+                </div>
         </section>
 
         <section id="work">
             <h2 class="section-title">My Activities</h2>
-            <div class="gallery">
+            <div class="horizontal-slider">
+                
                 <div class="card">
-                    <img src="picture/conten-me.jpg" alt="event">
+                    <img src="picture/conten-me.jpg">
                     <h3>Game Creation #73</h3>
-                    <p>การสร้างสรรค์เกมจากคอมพิวเตอร์ ระดับมัธยมศึกษา</p>
+                    <p>ร่วมแข่งขันการสร้างเกมระดับประเทศ</p>
                 </div>
                 <div class="card">
-                    <img src="picture/cnoten4.jpg" alt="event">
+                    <img src="picture/cnoten4.jpg">
                     <h3>Sudoku Winner</h3>
-                    <p>รางวัลชนะเลิศอันดับ 3 การแข่งขันคณิตศาสตร์ซูโดกุ</p>
+                    <p>รางวัลชนะเลิศอันดับ 3 ซูโดกุ</p>
                 </div>
-            </div>
+
+                </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Vuthikorn Fumisaki. All Rights Reserved.</p>
-    </footer>
-
     <script>
-        // 1. Sidebar Toggle (Enhanced: Lock/Unlock Scroll)
         function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('active');
-            // ป้องกันการเลื่อนหน้าจอขณะเปิดเมนู
-            document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : 'auto';
+            const s = document.getElementById('sidebar');
+            s.classList.toggle('active');
+            document.body.style.overflow = s.classList.contains('active') ? 'hidden' : 'auto';
         }
 
-        // 2. 3D Neon Rings (เข้มขึ้นและหมุนนุ่มขึ้น)
+        // 3D Neon Rings
         const container = document.getElementById('rings-container');
         for (let i = 0; i < 5; i++) {
             const ring = document.createElement('div');
             ring.style.cssText = `
                 position: absolute; top: 50%; left: 50%;
                 width: ${200 + i * 100}px; height: ${200 + i * 100}px;
-                border: 2px solid ${i % 2 === 0 ? '#1a6600' : '#2db300'};
-                box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
+                border: 2px solid #1a6600;
+                box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
                 border-radius: 50%;
                 margin-top: -${(200 + i * 100)/2}px; margin-left: -${(200 + i * 100)/2}px;
-                animation: rotateRing ${10 + i * 7}s linear infinite;
-                opacity: 0.6;
+                animation: rotateRing ${15 + i * 5}s linear infinite;
+                opacity: 0.7;
             `;
             container.appendChild(ring);
         }
 
         const style = document.createElement('style');
-        style.innerHTML = ` @keyframes rotateRing { 0% { transform: rotateX(75deg) rotateY(0deg); } 100% { transform: rotateX(75deg) rotateY(360deg); } } `;
+        style.innerHTML = `@keyframes rotateRing{0%{transform:rotateX(75deg) rotateY(0deg);}100%{transform:rotateX(75deg) rotateY(360deg);}}`;
         document.head.appendChild(style);
 
-        // 3. Scroll Reveal
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('reveal-active');
-            });
-        }, { threshold: 0.15 });
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('reveal-active'); });
+        }, { threshold: 0.1 });
         document.querySelectorAll('section').forEach(s => observer.observe(s));
     </script>
 </body>
 </html>
-
-
-
