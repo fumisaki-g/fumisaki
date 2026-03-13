@@ -1,3 +1,11 @@
+
+
+
+
+
+
+
+
 // [REPLACE] ระบบ Parallax ที่ฉลาดขึ้น (ตรวจจับมือถือ)
 document.addEventListener('mousemove', (e) => {
     // ถ้าหน้าจอแคบกว่า 768px (มือถือ) ไม่ต้องรันโค้ดขยับกล่อง

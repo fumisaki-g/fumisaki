@@ -1,4 +1,111 @@
-/* --- Global Setup --- */
+/* 1. พื้นหลังไหลๆ โทนดำ */
+.login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-45deg, #0a0a0a, #1a1a1a, #111, #000);
+    background-size: 400% 400%;
+    animation: gradientFlow 10s ease infinite;
+    overflow: hidden;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 2. กล่อง Login แบบตรวจจับเมาส์ (Hover) */
+.login-box {
+    background: rgba(255, 255, 255, 0); /* ล่องหนตอนแรก */
+    backdrop-filter: blur(0px);
+    padding: 50px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0);
+    text-align: center;
+    color: white;
+    width: 350px;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.login-box:hover {
+    background: rgba(255, 255, 255, 0.05); /* แสดงตัวตอนเมาส์มาใกล้ */
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+}
+
+/* 3. ช่องกรอกข้อมูล */
+.input-group {
+    position: relative;
+    margin: 30px 0;
+}
+
+.input-group input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #333;
+    padding: 10px 0;
+    color: white;
+    outline: none;
+    font-size: 16px;
+}
+
+.input-group label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    color: #666;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus ~ label,
+.input-group input:valid ~ label {
+    top: -20px;
+    font-size: 12px;
+    color: #0078d4;
+}
+
+/* 4. ปุ่ม Login (สถานะปกติกดไม่ได้) */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: #222;
+    color: #555;
+    border: none;
+    border-radius: 5px;
+    cursor: not-allowed;
+    transition: 0.3s;
+}
+
+.login-btn.active {
+    background: #0078d4;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 120, 212, 0.3);
+}
+
+/* 5. ปุ่มกวนๆ */
+.troll-btn {
+    background: transparent;
+    border: none;
+    color: #444;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.troll-btn:hover { color: #ff4d4d; }
+
+
+
+
+
+
+
 html {
     scroll-behavior: smooth;
 }
@@ -460,3 +567,5 @@ body {
         grid-template-columns: repeat(2, 1fr); /* ในมือถือให้ขึ้นทีละ 2 คอลัมน์ */
     }
 }
+
+

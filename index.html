@@ -3,220 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DEXTER LOGIN | Premium Experience</title>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Prompt:wght@300;500&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary: #00f2ff;
-            --secondary: #7000ff;
-            --accent: #ff00ff;
-            --bg: #0a0e27;
-            --card-bg: rgba(15, 23, 42, 0.8);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Prompt', sans-serif; }
-
-        body {
-            background: linear-gradient(135deg, #0a0e27 0%, #1a0f3f 50%, #0a0e27 100%);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            perspective: 1000px;
-        }
-
-        /* --- Animated Background --- */
-        .bg-glow {
-            position: absolute; width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(0, 242, 255, 0.15) 0%, transparent 70%);
-            border-radius: 50%; top: -150px; right: -150px; z-index: 0;
-            animation: moveGlow 20s infinite alternate; filter: blur(40px);
-        }
-        .bg-glow-2 {
-            position: absolute; width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(112, 0, 255, 0.15) 0%, transparent 70%);
-            border-radius: 50%; bottom: -100px; left: -100px; z-index: 0;
-            animation: moveGlow2 25s infinite alternate; filter: blur(40px);
-        }
-        @keyframes moveGlow { from { transform: translate(0,0) scale(1); } to { transform: translate(-200px, 200px) scale(1.1); } }
-        @keyframes moveGlow2 { from { transform: translate(0,0) scale(1); } to { transform: translate(200px, -200px) scale(0.9); } }
-
-        .grid-bg {
-            position: absolute; width: 100%; height: 100%;
-            background-image: linear-gradient(0deg, transparent 24%, rgba(0, 242, 255, 0.03) 25%, rgba(0, 242, 255, 0.03) 26%, transparent 27%, transparent 74%, rgba(0, 242, 255, 0.03) 75%, rgba(0, 242, 255, 0.03) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(0, 242, 255, 0.03) 25%, rgba(0, 242, 255, 0.03) 26%, transparent 27%, transparent 74%, rgba(0, 242, 255, 0.03) 75%, rgba(0, 242, 255, 0.03) 76%, transparent 77%, transparent);
-            background-size: 60px 60px; animation: grid-move 20s linear infinite; z-index: 0;
-        }
-        @keyframes grid-move { 0% { transform: translateY(0); } 100% { transform: translateY(60px); } }
-
-        /* --- Login Card --- */
-        .login-card {
-            background: var(--card-bg); backdrop-filter: blur(30px);
-            border: 2px solid rgba(0, 242, 255, 0.2); padding: 50px 45px;
-            border-radius: 25px; width: 420px; text-align: center;
-            box-shadow: 0 0 60px rgba(0, 242, 255, 0.1), 0 0 120px rgba(112, 0, 255, 0.08);
-            animation: cardAppear 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67) forwards;
-            z-index: 10; position: relative;
-        }
-        @keyframes cardAppear { from { opacity: 0; transform: scale(0.85) translateY(30px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-
-        .login-card h2 { font-family: 'Orbitron', sans-serif; color: var(--primary); font-size: 2.5rem; margin-bottom: 8px; text-shadow: 0 0 20px var(--primary); letter-spacing: 3px; }
-        .login-card p { color: rgba(0, 242, 255, 0.7); margin-bottom: 30px; font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; }
-
-        .input-group { position: relative; margin: 25px 0; }
-        input {
-            width: 100%; padding: 16px 18px; background: rgba(0, 0, 0, 0.4);
-            border: 2px solid rgba(0, 242, 255, 0.2); border-radius: 12px;
-            color: white; outline: none; transition: all 0.3s ease;
-        }
-        input:focus { border-color: var(--primary); background: rgba(0, 242, 255, 0.08); box-shadow: 0 0 20px rgba(0, 242, 255, 0.3); }
-
-        button {
-            width: 100%; padding: 16px; background: linear-gradient(135deg, var(--secondary), var(--primary));
-            border: none; border-radius: 12px; color: white; font-weight: bold;
-            cursor: pointer; transition: all 0.4s ease; letter-spacing: 2px;
-        }
-        button:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0, 242, 255, 0.4); }
-
-        #error-msg { color: #ff6b6b; margin-top: 15px; font-size: 0.9rem; min-height: 20px; }
-
-        /* --- Loading Overlay --- */
-        #loader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(10, 14, 39, 0.9); display: none;
-            flex-direction: column; justify-content: center; align-items: center; z-index: 1000;
-        }
-        .spinner {
-            width: 80px; height: 80px; border: 5px solid rgba(0, 242, 255, 0.1);
-            border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        /* --- Users Float List (ปุ่มขวาบน) --- */
-        .users-list-btn {
-            position: fixed; top: 20px; right: 20px;
-            background: rgba(0, 242, 255, 0.1); border: 1px solid var(--primary);
-            padding: 10px 20px; border-radius: 10px; color: var(--primary);
-            cursor: pointer; z-index: 100;
-        }
-        .users-modal {
-            position: fixed; top: 70px; right: 20px; width: 300px;
-            background: var(--card-bg); border: 1px solid var(--primary);
-            border-radius: 15px; display: none; padding: 15px; z-index: 101;
-            backdrop-filter: blur(20px); max-height: 400px; overflow-y: auto;
-        }
-        .user-item { padding: 10px; border-bottom: 1px solid rgba(0, 242, 255, 0.1); color: white; font-size: 0.9rem; }
-    </style>
+    <title>Login - Fumisaki Portal</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="grid-bg"></div>
-    <div class="bg-glow"></div>
-    <div class="bg-glow-2"></div>
-
-    <button class="users-list-btn" onclick="toggleUsersModal()">
-        👥 Data Preview (<span id="users-count">0</span>)
-    </button>
-
-    <!-- <div class="users-modal" id="users-modal">
-        <h3 style="color: var(--primary); margin-bottom: 10px;">📋 ข้อมูลจาก Database</h3>
-        <div id="users-list">โหลดข้อมูล...</div>
-    </div> -->
-
-    <div class="login-card">
-        <h2>DEXTER</h2>
-        <p>Database Access</p>
-        
-        <div class="input-group">
-            <input id="email" type="text" placeholder="Username (จากในตาราง)">
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Welcome</h2>
+            <p>กรุณาเข้าสู่ระบบ</p>
+            
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="text" id="username" required>
+                    <label>Username</label>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="password" required>
+                    <label>Password</label>
+                </div>
+                
+                <button type="submit" class="login-btn" disabled>Login</button>
+                
+                <div class="login-footer">
+                    <button type="button" onclick="trollUser()" class="troll-btn">← ไม่อยากเข้าแล้ว กดออกตรงนี้</button>
+                </div>
+            </form>
         </div>
-        <div class="input-group">
-            <input id="password" type="password" placeholder="Password (ID ในตาราง)">
-        </div>
-
-        <button onclick="handleLogin()">AUTHENTICATE</button>
-        <div id="error-msg"></div>
-    </div>
-
-    <div id="loader">
-        <div class="spinner"></div>
-        <h3 style="color: var(--primary); margin-top: 20px;">VERIFYING...</h3>
     </div>
 
     <script>
-        // --- 1. CONFIG (ใส่ค่าของคุณ) ---
-        const SB_URL = 'https://mwpeszyppcjhatsehblt.supabase.co';
-        const SB_KEY = 'sb_publishable_taP3u9GBiJGkf71lS7_W2A_7ODJNucX';
-        const supabaseClient = supabase.createClient(SB_URL, SB_KEY);
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const loginBtn = document.querySelector('.login-btn');
+        const loginForm = document.getElementById('loginForm');
 
-        // --- 2. ฟังก์ชันดึงข้อมูลมาโชว์ (Data Preview) ---
-        async function updateUsersList() {
-            const usersList = document.getElementById('users-list');
-            const usersCount = document.getElementById('users-count');
-
-            // แก้ไข 'repairs' เป็นชื่อตารางที่คุณอัปโหลด CSV
-            const { data, error } = await supabaseClient.from('repairs').select('*').limit(10);
-
-            if (error) {
-                usersList.innerHTML = "Error: " + error.message;
-                return;
+        // 1. ระบบตรวจจับการพิมพ์: ถ้ากรอกไม่ครบ ปุ่มจะเป็นสีเทากดไม่ได้
+        function checkInputs() {
+            if (usernameInput.value.trim() !== '' && passwordInput.value.trim() !== '') {
+                loginBtn.classList.add('active');
+                loginBtn.disabled = false;
+            } else {
+                loginBtn.classList.remove('active');
+                loginBtn.disabled = true;
             }
-
-            usersCount.textContent = data.length;
-            usersList.innerHTML = data.map(item => `
-                <div class="user-item">
-                    <b>ชื่อ:</b> ${item.customer_name || 'ไม่มีชื่อ'}<br>
-                    <small>ID/รหัส: ${item.id}</small>
-                </div>
-            `).join('');
         }
 
-        function toggleUsersModal() {
-            const modal = document.getElementById('users-modal');
-            modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
-            if(modal.style.display === 'block') updateUsersList();
-        }
+        usernameInput.addEventListener('input', checkInputs);
+        passwordInput.addEventListener('input', checkInputs);
 
-        // --- 3. ฟังก์ชัน LOGIN (เช็คจากตาราง CSV ที่เทลง Table) ---
-        async function handleLogin() {
-            const userIn = document.getElementById('email').value.trim();
-            const passIn = document.getElementById('password').value.trim();
-            const errorMsg = document.getElementById('error-msg');
-            const loader = document.getElementById('loader');
+        // 2. ระบบตรวจสอบรหัสผ่าน (Validation)
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const user = usernameInput.value;
+            const pass = passwordInput.value;
 
-            if (!userIn || !passIn) {
-                errorMsg.textContent = "กรุณากรอกข้อมูลให้ครบ";
-                return;
+            // ตั้งรหัสผ่านที่นี่ (ตัวอย่าง: admin / 1234)
+            if (user === "admin" && pass === "1234") {
+                alert("เข้าสู่ระบบสำเร็จ!");
+                window.location.href = "home.html";
+            } else {
+                alert("รหัสผ่านไม่ถูกต้อง ลองใหม่อีกครั้ง");
+                passwordInput.value = "";
+                checkInputs();
             }
+        });
 
-            loader.style.display = 'flex';
-            errorMsg.textContent = "";
-
-            // ค้นหาในตารางว่ามีแถวที่มีชื่อและรหัสตรงกันไหม
-            const { data, error } = await supabaseClient
-                .from('repairs') // <--- แก้ชื่อตารางให้ตรงกับใน Supabase
-                .select('*')
-                .eq('customer_name', userIn) // เช็คชื่อ
-                .eq('id', passIn)           // เช็ครหัส (ใช้ ID เป็นรหัสผ่านง่ายๆ)
-                .single();
-
-            setTimeout(() => {
-                loader.style.display = 'none';
-                if (data) {
-                    // ล็อกอินผ่าน!
-                    localStorage.setItem("loggedIn", "true");
-                    window.location.href = "home.html";
-                } else {
-                    // ไม่พบข้อมูล
-                    errorMsg.textContent = "❌ ไม่พบชื่อนี้ในระบบ หรือรหัสผิด";
-                }
-            }, 1000);
+        // 3. ปุ่มกวนประสาท (Troll Button)
+        function trollUser() {
+            alert("อยากออกจริงๆเหรอ? งั้นไปเลยยยยยยยยยยยยย");
+            window.location.href = "https://www.google.com";
         }
-
-        // โหลดข้อมูลจำนวนรายการทันทีเมื่อเปิดหน้า
-        window.onload = updateUsersList;
     </script>
 </body>
 </html>
