@@ -1,0 +1,462 @@
+/* --- Global Setup --- */
+html {
+    scroll-behavior: smooth;
+}
+:root {
+    --primary-blue: #007AFF;
+    --text-dark: #1d1d1f;
+    --glass-bg: rgba(255, 255, 255, 0.6);
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #fff;
+    overflow-x: hidden;
+}
+
+/* --- [REPLACE] ส่วน Navigation ที่อัปเกรดใหม่ --- */
+.main-nav {
+    position: fixed;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    /* แสงเงาแบบซ้อนเลเยอร์เพื่อให้ดูมีมิติ (Multi-layered Shadow) */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 
+        0 4px 6px -1px rgba(0, 0, 0, 0.05),
+        0 10px 15px -3px rgba(0, 0, 0, 0.03),
+        inset 0 0 20px rgba(255, 255, 255, 0.5); 
+    border-radius: 50px;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+}
+
+/* ลูกเล่นเมนู: มีเส้นวิ่งใต้คำแบบสมูท */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #444;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 8px 4px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--primary-blue);
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover {
+    color: var(--primary-blue);
+}
+
+.nav-links a:hover::after {
+    width: 80%;
+}
+
+/* อัปเกรดปุ่ม Contact ให้ดูมีพลัง (Glow Effect) */
+.btn-contact {
+    background: #1d1d1f;
+    color: #fff !important;
+    padding: 12px 28px !important;
+    border-radius: 30px;
+    font-size: 0.85rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1) !important;
+}
+
+.btn-contact:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: #000;
+    box-shadow: 0 15px 30px rgba(0, 122, 255, 0.25); /* เพิ่มแสงสีฟ้าจางๆ รอบปุ่ม */
+    border-color: var(--primary-blue);
+}
+
+.btn-contact:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+/* --- [REPLACE] ส่วนระบบพื้นหลังที่ปรับให้เข้มขึ้นและนวลขึ้น --- */
+.bg-system {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -10;
+    /* เปลี่ยนจากขาวจ๋า เป็นเทาอ่อนไล่ระดับ ช่วยให้สบายตาและดูแพงขึ้น */
+    background: radial-gradient(circle at center, #f0f2f5 0%, #dcdfe4 100%);
+    overflow: hidden;
+}
+
+.box {
+    position: absolute;
+    /* ปรับสีกล่องให้มีความขุ่นเหมือนกระจกมากขึ้น */
+    background: rgba(255, 255, 255, 0.4); 
+    /* เพิ่มเส้นขอบให้ชัดขึ้นเล็กน้อย */
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 30px;
+    will-change: transform;
+    pointer-events: none;
+    /* เพิ่มเงา Soft Shadow ให้กล่องดู "ลอย" ออกมาจากพื้นหลังที่เข้มขึ้น */
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.03),
+        inset 0 0 15px rgba(255, 255, 255, 0.5);
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+/* จุดที่ต้องระวัง: แก้ไขสีตัวหนังสือหลักให้เข้มขึ้นตามพื้นหลัง */
+body {
+    color: #1d1d1f; /* มั่นใจว่าเป็นสีเกือบดำ เพื่อให้ตัดกับพื้นหลังเทา */
+}
+
+/* Positions for b1 - b10 (ตัวอย่างตำแหน่ง) */
+.b1 { width: 450px; height: 450px; top: -10%; left: -5%; }
+.b2 { width: 300px; height: 300px; top: 15%; right: 5%; }
+.b3 { width: 200px; height: 200px; bottom: 10%; left: 15%; }
+/* ... (ใส่ตำแหน่งที่เหลือ b4-b10 ตามที่เคยมีได้เลยครับ) */
+
+
+/* --- [APPEND] ส่วนการปรับแต่งเพื่อมือถือ (Responsive Design) --- */
+@media (max-width: 768px) {
+    /* 1. ปรับขนาดแถบเมนูให้เล็กลง */
+    .main-nav {
+        top: 15px;
+        width: 95%;
+    }
+
+    .nav-container {
+        padding: 8px 20px;
+    }
+
+    /* 2. ซ่อนเมนูตัวหนังสือ (Home, Work, About) เพื่อไม่ให้ล้น */
+    /* เหลือไว้แค่ Logo และปุ่ม Contact ที่จำเป็น */
+    .nav-links li:not(:last-child) {
+        display: none; 
+    }
+
+    /* 3. ลดจำนวนกล่องพื้นหลังที่ซับซ้อน (เพื่อความลื่นบนมือถือ) */
+    /* ซ่อนกล่องที่ใหญ่เกินไปหรือกินแรงเครื่อง */
+    .b1, .b5, .b10 {
+        display: none;
+    }
+
+    /* 4. ปรับขนาดกล่องที่เหลือให้พอดีกับจอเล็ก */
+    .box {
+        border-radius: 15px;
+        opacity: 0.5; /* จางลงเพื่อให้เนื้อหาเด่นขึ้นบนจอเล็ก */
+    }
+
+    .b2 { width: 150px; height: 150px; }
+    .b3 { width: 100px; height: 100px; }
+}
+
+
+/* --- News & PR Section --- */
+.news-section {
+    padding: 120px 5% 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: #1d1d1f;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.section-subtitle {
+    color: #86868b;
+    font-size: 1.1rem;
+}
+
+/* Grid การจัดวางการ์ด */
+/* --- [REPLACE] ปรับแต่ง Grid ให้รองรับ 4 ช่องอย่างสวยงาม --- */
+.news-grid {
+    display: grid;
+    /* ปรับค่าจาก 350px เป็น 260px เพื่อให้ขึ้น 4 คอลัมน์ในจอมาตรฐานได้ */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+    gap: 25px; /* ลดระยะห่างระหว่างการ์ดเล็กน้อยเพื่อให้ไม่เบียดกันเกินไป */
+}
+
+/* เพิ่มเติม: ปรับขนาดตัวหนังสือการ์ดให้เล็กลงนิดนึงเพื่อให้เข้ากับขนาดการ์ดที่เล็กลง */
+.card-title {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+}
+
+.card-text {
+    font-size: 0.9rem;
+}
+
+/* ตัวการ์ด (Glass Card) */
+.news-card {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+}
+
+.news-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+.card-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.news-card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+.card-tag {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--primary-blue);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.card-content {
+    padding: 25px;
+}
+
+.card-date {
+    font-size: 0.8rem;
+    color: var(--primary-blue);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    color: #1d1d1f;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.card-text {
+    color: #636366;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.card-link {
+    text-decoration: none;
+    color: #1d1d1f;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.card-link:hover {
+    color: var(--primary-blue);
+}
+
+/* ปรับแต่งสำหรับมือถือ */
+@media (max-width: 768px) {
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+/* --- Hero Section Design --- */
+.hero {
+    height: 100vh; /* เต็มหน้าจอ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 5%;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 8vw, 5rem); /* ปรับขนาดอัตโนมัติตามจอ */
+    font-weight: 900;
+    line-height: 1.1;
+    color: #1d1d1f;
+    margin-bottom: 20px;
+}
+
+.highlight {
+    color: var(--primary-blue);
+    /* เพิ่มเงาเรืองแสงจางๆ ให้ตัวหนังสือดูมีพลัง */
+    text-shadow: 0 10px 30px rgba(0, 122, 255, 0.2);
+}
+
+.hero-desc {
+    font-size: 1.25rem;
+    color: #86868b;
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+/* ปุ่มกดสไตล์ Premium */
+.btn-primary {
+    background: #1d1d1f;
+    color: white;
+    padding: 16px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: var(--primary-blue);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 122, 255, 0.2);
+}
+
+.btn-secondary {
+    color: #1d1d1f;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    border-bottom-color: var(--primary-blue);
+}
+
+
+/* --- Microsoft-style Footer Design --- */
+.site-footer {
+    background: #f2f2f2; /* สีเทาอ่อนแบบ Microsoft */
+    padding: 60px 5% 20px;
+    margin-top: 80px;
+    border-top: 1px solid #e1e1e1;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    /* แบ่งเป็น 4 คอลัมน์ (ปรับอัตโนมัติเมื่อจอเล็กลง) */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+}
+
+.footer-column h3 {
+    color: #616161;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+    text-decoration: none;
+    color: #616161;
+    font-size: 0.85rem;
+    transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.footer-column ul li a:hover {
+    color: var(--primary-blue);
+    text-decoration: underline;
+}
+
+/* Footer Bottom Area */
+.footer-bottom {
+    max-width: 1200px;
+    margin: 60px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid #dcdcdc;
+}
+
+.footer-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    color: #616161;
+    font-size: 0.75rem;
+}
+
+.footer-legal a {
+    text-decoration: none;
+    color: #616161;
+    margin-left: 20px;
+}
+
+.footer-legal a:hover {
+    text-decoration: underline;
+}
+
+/* การปรับแต่งบนมือถือ */
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr); /* ในมือถือให้ขึ้นทีละ 2 คอลัมน์ */
+    }
+}
