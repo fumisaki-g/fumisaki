@@ -1,169 +1,276 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=0, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vuthikor phrabangWittaya Student Website</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="style.css">
-    <title>Fumisaki</title>
 </head>
 <body>
-    
-<nav class="main-nav">
-    <div class="nav-container">
-        <div class="nav-logo">
-            <span class="logo-circle"></span>
-            <span class="logo-light">Vuthikorn Pannakh</span>
+
+    <div class="animated-bg"></div>
+
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="logo-text">MENU BAR</span>
+            <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
         </div>
+        
         <ul class="nav-links">
-            <li><a href="#home" class="active">Home</a></li>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact" class="btn-contact">Contact</a></li>
+            <li class="nav-item active" onclick="switchPage('p1')">🏠 <span>หน้าหลัก</span></li>
+            <li class="nav-item" onclick="switchPage('p2')">📊 <span>คลังผลงาน</span></li>
+            <li class="nav-item" onclick="switchPage('p3')">🛒 <span>ทักษะ</span></li>
+            <li class="nav-item" onclick="switchPage('p4')">📦 <span>สต็อกสินค้า</span></li>
+            <li class="nav-item" onclick="switchPage('p5')">👥 <span>จัดการผู้ใช้</span></li>
+            <li class="nav-item" onclick="switchPage('p6')">💰 <span>การเงิน</span></li>
+            <li class="nav-item" onclick="switchPage('p7')">📢 <span>แคมเปญ</span></li>
+            <li class="nav-item" onclick="switchPage('p8')">📄 <span>เอกสาร</span></li>
+            <li class="nav-item" onclick="switchPage('p9')">🛠️ <span>เครื่องมือ</span></li>
+            <li class="nav-item" onclick="switchPage('p10')">☁️ <span>พื้นที่จัดเก็บ</span></li>
+            <li class="nav-item" onclick="switchPage('p11')">🛡️ <span>ความปลอดภัย</span></li>
+            <li class="nav-item" onclick="switchPage('p12')">⚡ <span>บันทึกกิจกรรม</span></li>
+            <li class="nav-item" onclick="switchPage('p13')">📅 <span>ตารางงาน</span></li>
+            <li class="nav-item" onclick="switchPage('p14')">✉️ <span>ข้อความ</span></li>
+            <li class="nav-item" onclick="switchPage('p15')">🌟 <span>สิทธิพิเศษ</span></li>
+            <li class="nav-item" onclick="switchPage('p16')">⚙️ <span>ตั้งค่าระบบ</span></li>
+        </ul>
+    </nav>
+
+    <div class="main-wrapper" id="mainWrapper">
+        
+        <header class="topbar">
+            <div class="btn-topbar">
+                <a href="shop.html" class="btn-a123">Shop</a>
+            </div>
+            <div class="topbar-right">
+                <div class="user-profile" onclick="switchPage('profile')">
+                    <span>Admin Fumisaki</span>
+                    <div class="avatar"></div>
+                </div>
+            </div>
+        </header>
+
+        <main class="content-area">
+<section id="p1" class="page-section active">
+    <header class="content-header">
+        <h1>กิจกรรมล่าสุดกับความสามารถโดยรวม</h1>
+        <p>รวบรวม 4 ผลงานและกิจกรรมที่เพิ่งผ่านพ้นไป</p>
+    </header>
+
+    <div class="activity-grid">
+        
+        <div class="activity-card">
+            <div class="card-image" style="background-image: url('img/work1.jpg');">
+                <div class="card-tag">Web Dev</div>
+            </div>
+            <div class="card-body">
+                <h3>สร้างระบบ Dashboard</h3>
+                <p>พัฒนาโครงสร้างเว็บไซต์ด้วย HTML/CSS เน้นความ Responsive และความหรูหรา</p>
+                <span class="card-date">14 มี.ค. 2026</span>
+            </div>
+        </div>
+
+        <div class="activity-card">
+            <div class="card-image" style="background-image: url('img/work2.jpg');">
+                <div class="card-tag">Arduino</div>
+            </div>
+            <div class="card-body">
+                <h3>ระบบรดน้ำอัตโนมัติ</h3>
+                <p>เขียนโค้ดควบคุมความชื้นในดินผ่านบอร์ด ESP32 เชื่อมต่อข้อมูลผ่าน Wi-Fi</p>
+                <span class="card-date">10 มี.ค. 2026</span>
+            </div>
+        </div>
+
+        <div class="activity-card">
+            <div class="card-image" style="background-image: url('img/work3.jpg');">
+                <div class="card-tag">Trading</div>
+            </div>
+            <div class="card-body">
+                <h3>วิเคราะห์กราฟเทคนิค</h3>
+                <p>ศึกษาการใช้ Indicator พื้นฐานสำหรับการเทรดคริปโตและหุ้นไทย</p>
+                <span class="card-date">05 มี.ค. 2026</span>
+            </div>
+        </div>
+
+        <div class="activity-card">
+            <div class="card-image" style="background-image: url('img/work4.jpg');">
+                <div class="card-tag">Linux</div>
+            </div>
+            <div class="card-body">
+                <h3>ติดตั้ง HyperDroid OS</h3>
+                <p>ปรับแต่ง Environment บนมือถือให้ทำงานได้เหมือน Desktop Workstation</p>
+                <span class="card-date">01 มี.ค. 2026</span>
+            </div>
+        </div>
+
+    </div>
+
+<div class="bottom-content-grid">
+    
+    <div class="premium-card stats-box">
+        <h3>ทักษะที่กำลังพัฒนา</h3>
+        <div class="stat-item">
+            <span>Frontend Development</span>
+            <div class="progress-bar"><div class="progress" style="width: 100%;"></div></div>
+        </div>
+        <div class="stat-item">
+            <span>Linux Command Line</span>
+            <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+        </div>
+        <div class="stat-item">
+            <span>Leader</span>
+            <div class="progress-bar"><div class="progress" style="width: 89%;"></div></div>
+        </div>
+        <div class="stat-item">
+            <span>Language Programming</span>
+            <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
+        </div>
+        <div class="stat-item">
+            <span>Arduino / IoT</span>
+            <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+        </div>
+        <div class="stat-item">
+            <span>Code Programming</span>
+            <div class="progress-bar"><div class="progress" style="width: 68%;"></div></div>
+        </div>
+    </div>
+
+    
+    <div class="premium-card note-box">
+        <h3>บันทึกช่วยจำ</h3>
+        <ul class="todo-list">
+            <li>✅ ปรับปรุง CSS หน้า Dashboard ให้ลื่นไหล</li>
+            <li>⏳ ศึกษาเรื่อง Database เพิ่มเติม</li>
+            <li>⏳ ออกแบบ UI สำหรับหน้าคลังผลงาน</li> 
         </ul>
     </div>
-</nav>
 
-<div class="bg-system">
-    <div class="box b1"></div>
-    <div class="box b2"></div>
-    <div class="box b3"></div>
-    <div class="box b4"></div>
-    <div class="box b5"></div>
-    <div class="box b6"></div>
-    <div class="box b7"></div>
-    <div class="box b8"></div>
-    <div class="box b9"></div>
-    <div class="box b10"></div>
 </div>
 
-<main class="content-wrapper">
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Welcome to <br><span class="highlight">"Website Student"</span></h1>
-            <p class="hero-desc">รวบรวมทุกความเคลื่อนไหว กิจกรรม และผลงานสร้างสรรค์ไว้ในที่เดียว</p>
-            <div class="hero-btns">
-                <a href="#work" class="btn-primary">ดูผลงานทั้งหมด</a>
-                <a href="#" class="btn-secondary">ทำความรู้จักเรา</a>
+</section>
+            
+<section id="p2" class="page-section">
+    <header class="content-header">
+        <h1>คลังผลงานทั้งหมด</h1>
+        <p>รวมโปรเจกต์ทั้งหมด</p>
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterProjects('all')">ทั้งหมด</button>
+            <button class="filter-btn" onclick="filterProjects('web')">Web Dev</button>
+            <button class="filter-btn" onclick="filterProjects('iot')">IoT</button>
+        </div>
+    </header>
+
+    <div class="project-grid">
+        
+        <div class="project-item web">
+            <div class="p-card">
+                <div class="p-img">🌐</div>
+                <div class="p-info"><h3>Web Project 1</h3><p>รายละเอียด...</p></div>
             </div>
         </div>
-    </section>
 
-    <section class="news-section">
-    <div class="section-header">
-        <h2 class="section-title"> Phrabang Wittaya Student</h2>
-        <p class="section-subtitle">website นี้ผมทำขึ้นเพื่อประชาสัมพันธ์เกี่ยวกับตัวผมเอง</p>
-    </div>
-
-    <div class="news-grid">
-    <article class="news-card">
-        <div class="card-image">
-            <img src="picture/conten-me.jpg" alt="Activity 3">
-            <span class="card-tag">Innovation</span>
-        </div>
-        <div class="card-content">
-            <span class="card-date">08 มีนาคม 2026</span>
-            <h3 class="card-title">หัวข้อผลงานที่ 3</h3>
-            <p class="card-text">คำอธิบายสั้นๆ เกี่ยวกับผลงานชิ้นนี้เพื่อให้คนอ่านเข้าใจเบื้องต้น...</p>
-            <a href="#" class="card-link">อ่านต่อ →</a>
-        </div>
-    </article>
-
-    <article class="news-card">
-        <div class="card-image">
-            <img src="picture/info-content6.jpg" alt="Activity 4">
-            <span class="card-tag">จิตอาสา</span>
-        </div>
-        <div class="card-content">
-            <span class="card-date">05 มีนาคม 20255</span>
-            <h3 class="card-title">ช่วยเหลืองานมหาวิทยาลัย</h3>
-            <p class="card-text">เข้าร่วมการจัดห้องสมุด ของโรงเรียนพระบางวิทยา นำโดยมหาวิทยาลัยราชภัฏนครสวรรค์</p>
-            <a href="#" class="card-link">อ่านต่อ →</a>
-        </div>
-    </article>
-
-        <article class="news-card">
-            <div class="card-image">
-                <img src="picture/me.jpg" alt="Activity 1">
-                <span class="card-tag">Project</span>
+        <div class="project-item iot">
+            <div class="p-card">
+                <div class="p-img">🤖</div>
+                <div class="p-info"><h3>IoT System</h3><p>รายละเอียด...</p></div>
             </div>
-            <div class="card-content">
-                <span class="card-date">12 มีนาคม 2025</span>
-                <h3 class="card-title">เปิดตัวระบบ Portfolio รูปแบบใหม่</h3>
-                <p class="card-text">เริ่มต้นการพัฒนาเว็บไซต์ที่เน้นความลื่นไหลและดีไซน์ที่ทันสมัยด้วยเทคนิค Glassmorphism...</p>
-                <a href="#" class="card-link">อ่านต่อ →</a>
+        </div>
+
+        <div class="project-item web">
+            <div class="p-card">
+                <div class="p-img">💻</div>
+                <div class="p-info"><h3>New Project</h3><p>รายละเอียด...</p></div>
             </div>
-        </article>
+        </div>
 
-        <article class="news-card">
-            <div class="card-image">
-                <img src="picture/content.jpg" alt="Activity 2">
-                <span class="card-tag">Event</span>
+
+    </div> 
+</section>
+
+<section id="p3" class="page-section">
+    <header class="content-header">
+        <h1>ทักษะและความเชี่ยวชาญ</h1>
+        <p>ระดับความชำนาญในแต่ละด้านของซอฟต์แวร์และฮาร์ดแวร์</p>
+    </header>
+
+    <div class="skills-container">
+        <div class="skill-circle-card">
+            <div class="circle-box" style="--percent: 85; --color: #f63b3b;">
+                <svg>
+                    <circle cx="70" cy="70" r="60"></circle>
+                    <circle cx="70" cy="70" r="60"></circle>
+                </svg>
+                <div class="number">
+                    <h3>85<span>%</span></h3>
+                </div>
             </div>
-            <div class="card-content">
-                <span class="card-date">10 มีนาคม 2024</span>
-                <h3 class="card-title">การแข่งขันกีฬาอีสปอร์ต ROV</h3>
-                <p class="card-text">เข้าร่วมการแข่งขันกีฬาอีสปอร์ต ROV ที่จัดขึ้นโดยครูกลุ่มสาระวิทยาศาสตรืและเทคโนโลยีสารสนเทศ</p>
-                <a href="#" class="card-link">อ่านต่อ →</a>
+            <h4>Frontend Dev</h4>
+        </div>
+
+        <div class="skill-circle-card">
+            <div class="circle-box" style="--percent: 60; --color: #000000;">
+                <svg>
+                    <circle cx="70" cy="70" r="60"></circle>
+                    <circle cx="70" cy="70" r="60"></circle>
+                </svg>
+                <div class="number">
+                    <h3>60<span>%</span></h3>
+                </div>
             </div>
-        </article>
-        </div>
-    </section>
-</main>
-
-
-<footer class="site-footer">
-    <div class="footer-container">
-        <div class="footer-column">
-            <h3>โครงการย่อย</h3>
-            <ul>
-                <li><a href="#">ระบบคลังผลงาน</a></li>
-                <li><a href="#">ศูนย์รวมกิจกรรม</a></li>
-                <li><a href="#">ห้องสมุดดิจิทัล</a></li>
-                <li><a href="#">ระบบประกาศข่าว</a></li>
-            </ul>
+            <h4>Backend Dev</h4>
         </div>
 
-        <div class="footer-column">
-            <h3>เกี่ยวกับเรา</h3>
-            <ul>
-                <li><a href="#">ประวัติความเป็นมา</a></li>
-                <li><a href="#">วิสัยทัศน์</a></li>
-                <li><a href="#">บุคลากร</a></li>
-                <li><a href="#">ติดต่อสอบถาม</a></li>
-            </ul>
+        <div class="skill-circle-card">
+            <div class="circle-box" style="--percent: 65; --color: #10b981;">
+                <svg>
+                    <circle cx="70" cy="70" r="60"></circle>
+                    <circle cx="70" cy="70" r="60"></circle>
+                </svg>
+                <div class="number">
+                    <h3>65<span>%</span></h3>
+                </div>
+            </div>
+            <h4>Arduino / IoT</h4>
         </div>
 
-        <div class="footer-column">
-            <h3>บริการอื่นๆ</h3>
-            <ul>
-                <li><a href="shop.html">ร้านรับซ่อมคอมพิวเตอร์</a></li>
-                <li><a href="#">สนับสนุน</a></li>
-                <li><a href="#">ช่วยเหลือ/FAQ</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-column">
-            <h3>ช่องทางติดตาม</h3>
-            <ul>
-                <li><a href="https://www.facebook.com/share/18LSyVMv4X/">Facebook Page</a></li>
-                <li><a href="https://youtube.com/@fumisaki_ginity8850?si=w3dSW8g9zj3038k2">YouTube Channel</a></li>
-                <li><a href="https://www.instagram.com/vuthikor?igsh=MXd5OTI3b20yNG5sdA==">Intragram</a></li>
-            </ul>
+        <div class="skill-circle-card">
+            <div class="circle-box" style="--percent: 79; --color: #208a00;">
+                <svg>
+                    <circle cx="70" cy="70" r="60"></circle>
+                    <circle cx="70" cy="70" r="60"></circle>
+                </svg>
+                <div class="number">
+                    <h3>79<span>%</span></h3>
+                </div>
+            </div>
+            <h4>Read code</h4>
         </div>
     </div>
 
-    <div class="footer-bottom">
-        <div class="footer-info">
-            <span>© 2026<span style="font-weight:300">Vuthikor Pannakh</span>PhrabangWittaya</span>
-            <div class="footer-legal">
-                <a href="#">นโยบายความเป็นส่วนตัว</a>
-                <a href="#">ข้อกำหนดการใช้งาน</a>
-            </div>
+    <div class="premium-card" style="margin-top: 30px;">
+        <h3>เครื่องมือและเทคโนโลยีอื่นๆ</h3>
+        <div class="tags-container">
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3 / Tailwind</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">C++ (Arduino)</span>
+            <span class="skill-tag">Linux Terminal</span>
+            <span class="skill-tag">Git / GitHub</span>
+            <span class="skill-tag">Python (Basic)</span>
+            <span class="skill-tag">Photoshop</span>
+            <span class="skill-tag">Bios</span>
+            <span class="skill-tag">Canva</span>
+            <span class="skill-tag">Window Terminal</span>
         </div>
     </div>
-</footer>
+</section>
+
+
+            <section id="p16" class="page-section"><h1>หน้าตั้งค่าระบบ</h1></section>
+            </main>
+    </div>
 
     <script src="script.js"></script>
-
 </body>
 </html>

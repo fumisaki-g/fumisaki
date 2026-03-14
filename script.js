@@ -1,79 +1,51 @@
+// [1] ฟังก์ชัน เปิด-ปิด Sidebar (Toggle)
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const mainWrapper = document.getElementById('mainWrapper');
+    
+    // สลับคลาสเพื่อหด/ขยาย
+    sidebar.classList.toggle('collapsed');
+    mainWrapper.classList.toggle('expanded');
+}
 
+// [2] ฟังก์ชัน สลับหน้าเนื้อหา
+function switchPage(pageId) {
+    // ซ่อนทุกหน้า
+    const sections = document.querySelectorAll('.page-section');
+    sections.forEach(s => s.classList.remove('active'));
 
+    // เอาไฮไลท์ออกจากทุกปุ่ม
+    const menuItems = document.querySelectorAll('.nav-item');
+    menuItems.forEach(i => i.classList.remove('active'));
 
-
-
-
-
-
-// [REPLACE] ระบบ Parallax ที่ฉลาดขึ้น (ตรวจจับมือถือ)
-document.addEventListener('mousemove', (e) => {
-    // ถ้าหน้าจอแคบกว่า 768px (มือถือ) ไม่ต้องรันโค้ดขยับกล่อง
-    if (window.innerWidth <= 768) return;
-
-    requestAnimationFrame(() => {
-        const { clientX, clientY } = e;
-        const centerX = window.innerWidth / 2;
-        const centerY = window.innerHeight / 2;
-
-        const boxes = document.querySelectorAll('.box');
-        boxes.forEach((box, index) => {
-            const depth = (index + 1) * 0.08; 
-            const moveX = (clientX - centerX) * depth;
-            const moveY = (clientY - centerY) * depth;
-            box.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) rotateX(${moveY * 0.01}deg) rotateY(${moveX * 0.01}deg)`;
-        });
-    });
-});
-
-// 2. ระบบหดแถบเมนูเมื่อเลื่อนจอ
-window.addEventListener('scroll', () => {
-    const nav = document.querySelector('.main-nav');
-    if (window.scrollY > 50) {
-        nav.style.top = '10px';
-        nav.style.width = '95%';
-        nav.style.background = 'rgba(255, 255, 255, 0.9)';
-    } else {
-        nav.style.top = '25px';
-        nav.style.width = '90%';
-        nav.style.background = 'rgba(255, 255, 255, 0.6)';
+    // แสดงหน้าใหม่
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) {
+        targetPage.classList.add('active');
     }
-});
+
+    // ใส่สีไฮไลท์ปุ่มที่กด (ใช้Event)
+    if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+    }
+}
 
 
-// [APPEND] ฟังก์ชันแม่เหล็กสำหรับปุ่ม Contact (ทำให้ปุ่มขยับตามเมาส์เบาๆ)
-const contactBtn = document.querySelector('.btn-contact');
 
-contactBtn.addEventListener('mousemove', (e) => {
-    const rect = contactBtn.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
+function filterProjects(category) {
+    // 1. จัดการไฮไลท์ปุ่ม Filter
+    const buttons = document.querySelectorAll('.filter-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.currentTarget.classList.add('active');
 
-    contactBtn.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px) scale(1.05)`;
-});
-
-contactBtn.addEventListener('mouseleave', () => {
-    contactBtn.style.transform = `translate(0, 0) scale(1)`;
-});
-
-
-// [APPEND] ระบบเปิดตัวเนื้อหาเมื่อเลื่อนหน้าจอมาถึง (Scroll Reveal)
-const observerOptions = {
-    threshold: 0.1
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0)";
+    // 2. จัดการแสดง/ซ่อน การ์ดผลงาน
+    const items = document.querySelectorAll('.project-item');
+    items.forEach(item => {
+        if (category === 'all' || item.classList.contains(category)) {
+            item.style.display = 'block';
+            item.style.animation = 'fadeIn 0.4s ease';
+        } else {
+            item.style.display = 'none';
         }
     });
-}, observerOptions);
-
-document.querySelectorAll('.news-card').forEach(card => {
-    card.style.opacity = "0";
-    card.style.transform = "translateY(30px)";
-    card.style.transition = "all 0.6s cubic-bezier(0.19, 1, 0.22, 1)";
-    observer.observe(card);
-});
+}
