@@ -1,30 +1,25 @@
-// [1] ฟังก์ชัน เปิด-ปิด Sidebar (Toggle)
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     const mainWrapper = document.getElementById('mainWrapper');
-    
+
     // สลับคลาสเพื่อหด/ขยาย
     sidebar.classList.toggle('collapsed');
     mainWrapper.classList.toggle('expanded');
 }
 
-// [2] ฟังก์ชัน สลับหน้าเนื้อหา
 function switchPage(pageId) {
-    // ซ่อนทุกหน้า
     const sections = document.querySelectorAll('.page-section');
-    sections.forEach(s => s.classList.remove('active'));
+    const targetPage = document.getElementById(pageId);
+    
+    // ถ้าหน้าเป้าหมายไม่มีอยู่จริง ให้ไปหน้า coming-soon
+    const pageToShow = targetPage ? targetPage : document.getElementById('coming-soon');
 
-    // เอาไฮไลท์ออกจากทุกปุ่ม
+    sections.forEach(s => s.classList.remove('active'));
     const menuItems = document.querySelectorAll('.nav-item');
     menuItems.forEach(i => i.classList.remove('active'));
 
-    // แสดงหน้าใหม่
-    const targetPage = document.getElementById(pageId);
-    if (targetPage) {
-        targetPage.classList.add('active');
-    }
+    pageToShow.classList.add('active');
 
-    // ใส่สีไฮไลท์ปุ่มที่กด (ใช้Event)
     if (event && event.currentTarget) {
         event.currentTarget.classList.add('active');
     }
@@ -48,4 +43,27 @@ function filterProjects(category) {
             item.style.display = 'none';
         }
     });
+}
+// ฟังก์ชันเช็กขนาดหน้าจอและตั้งค่า Sidebar อัตโนมัติ
+function initSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const mainWrapper = document.getElementById('mainWrapper');
+    
+    // ถ้าหน้าจอน้อยกว่า 768px (ขนาดมือถือ/แท็บเล็ต)
+    if (window.innerWidth <= 768) {
+        sidebar.classList.add('collapsed');
+        mainWrapper.classList.add('expanded');
+    }
+}
+
+// เรียกใช้งานฟังก์ชันทันทีที่โหลดหน้าเว็บ
+window.onload = initSidebar;
+
+// ปรับปรุงฟังก์ชัน toggleSidebar เดิมให้ฉลาดขึ้น
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const mainWrapper = document.getElementById('mainWrapper');
+    
+    sidebar.classList.toggle('collapsed');
+    mainWrapper.classList.toggle('expanded');
 }

@@ -4,11 +4,14 @@
     font-family: 'Inter', sans-serif; /* ฟอนต์Inter อ่านง่าย ดูโปร */
 }
 
+/* --- ของใหม่ --- */
 body {
     display: flex;
     overflow-x: hidden;
     min-height: 100vh;
     color: #333;
+    /* เพิ่มบรรทัดนี้: สีเทาอ่อนมาก ๆ ช่วยสบายตา */
+    background-color: #f4f7f6; 
 }
 
 /* --- 2. แอนิเมชั่นพื้นหลัง (Animated Gradient) --- */
@@ -272,7 +275,7 @@ body {
     height: 100%;
     background: linear-gradient(90deg, #3bb2f6, #2dd4bf);
     border-radius: 10px;
-    animation: slideProgress 4.5s ease-out; /* แอนิเมชั่นตอนโหลดหน้า */
+    animation: slideProgress 7s ease-out; /* แอนิเมชั่นตอนโหลดหน้า */
 }
 
 @keyframes slideProgress {
@@ -329,10 +332,10 @@ body {
 /* ต้องเขียนแบบนี้เป๊ะๆ นะครับ */
 .project-grid {
     display: grid !important; /* ใส่ !important เพื่อบังคับให้มันเป็น Grid */
-    
+
     /* สั่งให้แบ่งคอลัมน์: ขั้นต่ำ 220px ถ้ากว้างกว่านั้นให้หารเท่ากัน */
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
-    
+
     gap: 20px; /* ระยะห่างระหว่างการ์ด */
     width: 100%;
     align-items: start;
@@ -468,4 +471,35 @@ body {
     text-decoration: none;
     font-size: 13px;
     transition: 0.3s;
+}
+
+/* --- ส่วนที่ต้องเพิ่ม/แก้ไขใน style.css --- */
+
+/* ตั้งค่าเริ่มต้นสำหรับหน้าจอขนาดเล็ก (มือถือ) */
+@media (max-width: 768px) {
+    /* 1. สั่งให้ Sidebar หดตั้งแต่เริ่ม */
+    .sidebar {
+        width: 70px; /* หดเหลือแค่ไอคอน */
+    }
+    
+    /* 2. ซ่อนข้อความ Logo และชื่อเมนู */
+    .sidebar .logo-text, 
+    .sidebar .nav-item span {
+        display: none;
+    }
+
+    /* 3. ดันเนื้อหาหลักมาให้เต็มจอ */
+    .main-wrapper {
+        margin-left: 70px; /* ขยับเนื้อหามาทางซ้ายให้พอดีกับ Sidebar ที่หด */
+    }
+
+    /* 4. เมื่อมีการกด Toggle (คลาส expanded/collapsed เดิม) */
+    /* ถ้าต้องการให้กดแล้วกางทับเนื้อหาบนมือถือ */
+    .sidebar.active-mobile {
+        width: 250px;
+    }
+    .sidebar.active-mobile .logo-text,
+    .sidebar.active-mobile .nav-item span {
+        display: block;
+    }
 }
