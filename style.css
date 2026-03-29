@@ -239,7 +239,7 @@ body {
 
 /* --- 6. Content Area --- */
 .content-area { 
-    padding: 40px;
+    padding: 35px 40px;
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -260,7 +260,7 @@ body {
 
 .premium-card {
     background: white;
-    padding: 35px;
+    padding: 30px;
     border-radius: 16px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     border: 1px solid rgba(0, 0, 0, 0.06);
@@ -271,10 +271,17 @@ body {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
+.premium-card h3 {
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
 /* --- Content Header --- */
 .content-header {
-    margin-bottom: 40px;
-    padding-bottom: 20px;
+    margin-bottom: 35px;
+    padding-bottom: 18px;
     border-bottom: 2px solid rgba(59, 130, 246, 0.1);
 }
 
@@ -282,25 +289,26 @@ body {
     font-size: 32px; 
     color: #1a1a1a;
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .content-header p { 
     color: #7a7a7a; 
     font-size: 15px;
     font-weight: 400;
+    line-height: 1.5;
 }
 
 /* --- Activity Grid --- */
 .activity-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 28px;
+    gap: 24px;
 }
 
 .activity-card {
     background: white;
-    border-radius: 16px;
+    border-radius: 14px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -308,7 +316,7 @@ body {
 }
 
 .activity-card:hover {
-    transform: translateY(-12px);
+    transform: translateY(-10px);
     box-shadow: 0 12px 32px rgba(59, 130, 246, 0.18);
     border-color: rgba(59, 130, 246, 0.2);
 }
@@ -328,24 +336,24 @@ body {
 
 .card-tag {
     position: absolute;
-    top: 15px; 
-    left: 15px;
+    top: 14px; 
+    left: 14px;
     background: linear-gradient(135deg, #6d9cff, #3b82f6);
     color: white;
-    padding: 6px 14px;
+    padding: 6px 12px;
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
 }
 
 .card-body {
-    padding: 24px;
+    padding: 22px;
 }
 
 .card-body h3 {
-    font-size: 18px;
-    margin-bottom: 12px;
+    font-size: 17px;
+    margin-bottom: 10px;
     color: #1a1a1a;
     font-weight: 700;
 }
@@ -353,22 +361,28 @@ body {
 .card-body p {
     font-size: 14px;
     color: #7a7a7a;
-    line-height: 1.7;
-    margin-bottom: 16px;
+    line-height: 1.6;
+    margin-bottom: 14px;
 }
 
 .card-date {
     font-size: 12px;
     color: #a0a0a0;
     font-weight: 500;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.card-body .btn {
+    margin-top: 12px;
 }
 
 /* --- Bottom Content Grid --- */
 .bottom-content-grid {
-    margin-top: 40px;
+    margin-top: 35px;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 30px;
+    gap: 28px;
 }
 
 @media (max-width: 900px) {
@@ -379,20 +393,20 @@ body {
 
 /* --- Stats & Progress --- */
 .stat-item {
-    margin-top: 25px;
+    margin-top: 20px;
 }
 
 .stat-item span {
-    font-size: 14px;
+    font-size: 13px;
     color: #5a5a5a;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-weight: 500;
 }
 
 .progress-bar {
     width: 100%;
-    height: 10px;
+    height: 8px;
     background: #f0f4f8;
     border-radius: 10px;
     overflow: hidden;
@@ -412,19 +426,19 @@ body {
 /* --- Todo List --- */
 .todo-list {
     list-style: none;
-    margin-top: 20px;
+    margin-top: 16px;
 }
 
 .todo-list li {
-    font-size: 14px;
-    padding: 12px 0;
+    font-size: 13px;
+    padding: 10px 0;
     border-bottom: 1px solid #f0f0f0;
     color: #5a5a5a;
     transition: all 0.3s ease;
 }
 
 .todo-list li:hover {
-    padding-left: 8px;
+    padding-left: 6px;
     color: #3b82f6;
 }
 
@@ -465,7 +479,7 @@ body {
 .project-grid {
     display: grid !important;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
-    gap: 20px;
+    gap: 18px;
     width: 100%;
     align-items: start;
 }
@@ -477,7 +491,7 @@ body {
 
 .p-card {
     background: white;
-    border-radius: 14px;
+    border-radius: 13px;
     overflow: hidden;
     border: 1px solid #f0f0f0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -500,18 +514,20 @@ body {
 }
 
 .p-info { 
-    padding: 15px; 
+    padding: 14px; 
 }
 
 .p-info h3 { 
-    font-size: 16px; 
-    margin-bottom: 5px;
+    font-size: 15px; 
+    margin-bottom: 4px;
     color: #1a1a1a;
+    font-weight: 700;
 }
 
 .p-info p { 
-    font-size: 12px; 
-    color: #777; 
+    font-size: 11px; 
+    color: #777;
+    line-height: 1.4;
 }
 
 /* --- Skills Section --- */

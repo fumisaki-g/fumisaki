@@ -30,6 +30,20 @@ function switchPage(pageId) {
     }
 }
 
+function switchPageAndScroll(pageId) {
+    // เรียก switchPage ก่อนเพื่อเปลี่ยนหน้า
+    switchPage(pageId);
+    
+    // แล้ว scroll ไปยัง section ที่ต้องการ
+    const targetElement = document.getElementById(pageId);
+    if (targetElement) {
+        targetElement.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+        });
+    }
+}
+
 
 
 function filterProjects(category) {
