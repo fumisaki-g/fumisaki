@@ -62,6 +62,12 @@ function filterProjects(category) {
             item.style.display = 'none';
         }
     });
+
+    // 3. Scroll to project grid
+    const projectGrid = document.querySelector('.project-grid');
+    if (projectGrid) {
+        projectGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 }
 // ฟังก์ชันเช็กขนาดหน้าจอและตั้งค่า Sidebar อัตโนมัติ
 function initSidebar() {
