@@ -1,29 +1,30 @@
 /* --- 1. ตั้งค่าพื้นฐานและฟอนต์ --- */
 * {
-    margin: 0; padding: 0; box-sizing: border-box;
-    font-family: 'Inter', sans-serif; /* ฟอนต์Inter อ่านง่าย ดูโปร */
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
 }
 
-/* --- ของใหม่ --- */
 body {
     display: flex;
     overflow-x: hidden;
     min-height: 100vh;
-    color: #333;
-    /* เพิ่มบรรทัดนี้: สีเทาอ่อนมาก ๆ ช่วยสบายตา */
-    background-color: #f4f7f6; 
+    color: #1a1a1a;
+    background-color: #f8fafb; 
 }
 
-/* --- 2. แอนิเมชั่นพื้นหลัง (Animated Gradient) --- */
+/* --- 2. แอนิเมชั่นพื้นหลัง --- */
 .animated-bg {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    z-index: -1; /* ให้อยู่หลังสุด */
-    /* สีไล่ระดับ เทาอ่อน-ขาว-ฟ้าอ่อน ให้ความรู้สึกสะอาด */
-    background: linear-gradient(-45deg, #f4f7f9, #ffffff, #e6eff5, #f4f7f9);
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(135deg, #f5f7fa 0%, #f8fafb 25%, #f0f4f8 50%, #fafbfc 75%, #f5f7fa 100%);
     background-size: 400% 400%;
-    /* แอนิเมชั่น ขยับช้าๆ นุ่มนวล ไม่กินแบต */
-    animation: gradientBG 15s ease infinite; 
+    animation: gradientBG 20s ease infinite; 
 }
 
 @keyframes gradientBG {
@@ -32,332 +33,461 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* --- 3. Sidebar Style (พรีเมียม ดำ-ฟ้า) --- */
+/* --- 3. Sidebar Style --- */
 .sidebar {
-    width: 250px; height: 100vh;
-    background: #111; /* ดำสนิท ดูหรู */
+    width: 250px; 
+    height: 100vh;
+    background: linear-gradient(180deg, #1a2234 0%, #0f1419 100%);
     color: white;
     position: fixed;
-    transition: width 0.3s ease; /* แอนิเมชั่นหด-ขยายเวลากดปุ่ม ☰ */
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
-    overflow-y: auto; /* เลื่อนขึ้นลงได้ */
+    overflow-y: auto;
     overflow-x: hidden;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
 }
 
-/* ปรับ Scrollbar ของ Sidebar ให้บางที่สุด */
-.sidebar::-webkit-scrollbar { width: 3px; }
-.sidebar::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+.sidebar::-webkit-scrollbar { 
+    width: 5px; 
+}
 
-.sidebar.collapsed { width: 70px; }
-.sidebar.collapsed .logo-text, .sidebar.collapsed .nav-item span { display: none; }
+.sidebar::-webkit-scrollbar-thumb { 
+    background: rgba(255, 255, 255, 0.2); 
+    border-radius: 10px; 
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover { 
+    background: rgba(255, 255, 255, 0.3); 
+}
+
+.sidebar.collapsed { 
+    width: 70px; 
+}
+
+.sidebar.collapsed .logo-text, 
+.sidebar.collapsed .nav-item span { 
+    display: none; 
+}
 
 .sidebar-header { 
-    padding: 20px; display: flex; align-items: center; justify-content: space-between; 
-    background: #000; position: sticky; top: 0; z-index: 10;
+    padding: 25px 20px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.2); 
+    position: sticky; 
+    top: 0; 
+    z-index: 10;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.toggle-btn { background: none; border: none; color: white; font-size: 20px; cursor: pointer; transition: 0.2s; }
-.toggle-btn:hover { color: #3b82f6; } /* เปลี่ยนเป็นสีฟ้าเวลาชี้ */
+.logo-text { 
+    font-size: 13px; 
+    font-weight: 700; 
+    letter-spacing: 1px;
+    color: #8b95c9;
+    text-transform: uppercase;
+}
 
-.nav-links { list-style: none; padding-bottom: 30px; }
+.toggle-btn { 
+    background: none; 
+    border: none; 
+    color: white; 
+    font-size: 20px; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px;
+    border-radius: 6px;
+}
 
-/* --- 4. แอนิเมชั่นปุ่ม Sidebar (หรูหรา) --- */
+.toggle-btn:hover { 
+    color: #6d9cff;
+    background: rgba(109, 156, 255, 0.1);
+}
+
+.nav-links { 
+    list-style: none; 
+    padding: 20px 0;
+    flex: 1;
+}
+
+/* --- 4. Nav Items --- */
 .nav-item { 
-    padding: 12px 25px;
+    padding: 14px 25px;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 15px;
-    color: #adb5bd;
+    color: #9ca3af;
     white-space: nowrap;
     position: relative;
-    /* แอนิเมชั่น Transition เวลาเอาเมาส์ไปชี้ */
-    transition: background 0.2s, color 0.2s, transform 0.2s; 
+    margin: 5px 10px;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* เอฟเฟกต์เวลาเอาเมาส์/นิ้วไปวาง (Hover/Active) */
-.nav-item:hover, .nav-item.active { 
-    background: rgba(59, 130, 246, 0.1); /* สีฟ้าอ่อนๆ โปร่งแสง */
-    color: white;
-    transform: translateX(5px); /* เลื่อนไปทางขวานิดนึง ให้ดูมีมิติ */
+.nav-item:hover, 
+.nav-item.active { 
+    background: rgba(109, 156, 255, 0.2);
+    color: #ffffff;
+    transform: translateX(8px);
 }
 
-/* ขีดสีฟ้าข้างปุ่ม (Indicator) */
 .nav-item::before {
     content: '';
     position: absolute;
-    left: 0; top: 0; width: 0; height: 100%;
-    background: #3b82f6; /* สีฟ้า */
-    transition: 0.3s ease; /* แอนิเมชั่นขีดโผล่ */
+    left: 0; 
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px; 
+    height: 0;
+    background: linear-gradient(180deg, #6d9cff, #3b82f6);
+    border-radius: 2px;
+    transition: all 0.3s ease;
 }
 
-.nav-item:hover::before, .nav-item.active::before {
-    width: 4px; /* ขีดโผล่ออกมาเวลากด */
+.nav-item:hover::before, 
+.nav-item.active::before {
+    height: 24px;
 }
 
-/* --- 5. Content & Topbar Style --- */
-.main-wrapper { margin-left: 250px; width: 100%; transition: margin-left 0.3s ease; }
-.main-wrapper.expanded { margin-left: 70px; }
+/* --- 5. Content & Topbar --- */
+.main-wrapper { 
+    margin-left: 250px; 
+    width: 100%; 
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.main-wrapper.expanded { 
+    margin-left: 70px; 
+}
 
 .topbar {
-    height: 60px;
-    background: rgba(255, 255, 255, 0.8); /* กระจกฝ้า */
-    backdrop-filter: blur(10px); /* เอฟเฟกต์เบลอ */
-    border-bottom: 1px solid #ddd;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
-    position: sticky; top: 0; z-index: 900;
+    padding: 0 30px;
+    position: sticky; 
+    top: 0; 
+    z-index: 900;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.topbar-left { display: flex; gap: 8px; }
+.topbar-left { 
+    display: flex; 
+    gap: 8px; 
+}
 
-/* แอนิเมชั่นปุ่มแถบบน */
 .top-menu-btn { 
-    background: #f8f9fa; border: 1px solid #e0e0e0; 
-    padding: 6px 12px; border-radius: 6px; 
-    cursor: pointer; font-size: 13px;
-    transition: 0.2s;
+    background: #f0f4f8;
+    border: 1px solid #e5eaf2;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1a1a1a;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .top-menu-btn:hover { 
-    background: #3b82f6; color: white; 
+    background: linear-gradient(135deg, #6d9cff, #3b82f6);
+    color: white;
     border-color: #3b82f6;
-    transform: translateY(-2px); /* ลอยขึ้นนิดนึงเวลากด */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
-.topbar-right { display: flex; align-items: center; }
-.user-profile { display: flex; align-items: center; gap: 10px; cursor: pointer; transition: 0.2s; }
-.user-profile:hover { opacity: 0.7; }
-.avatar { width: 32px; height: 32px; background: #3b82f6; border-radius: 50%; }
+.topbar-right { 
+    display: flex; 
+    align-items: center; 
+}
 
-/* --- 6. Content Area & Card Style --- */
-.content-area { padding: 30px; }
+.user-profile { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    cursor: pointer; 
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
 
-/* แอนิเมชั่นเวลาเปลี่ยนหน้า (Fade In) */
-.page-section { display: none; }
+.user-profile:hover { 
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.user-profile span {
+    font-size: 13px;
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+.avatar { 
+    width: 36px; 
+    height: 36px; 
+    background: linear-gradient(135deg, #6d9cff, #3b82f6);
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* --- 6. Content Area --- */
+.content-area { 
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.page-section { 
+    display: none; 
+}
+
 .page-section.active { 
     display: block; 
-    animation: fadeInPage 0.4s ease-out; 
+    animation: fadeInPage 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes fadeInPage { 
-    from { opacity: 0; transform: translateY(10px); } 
+    from { opacity: 0; transform: translateY(15px); } 
     to { opacity: 1; transform: translateY(0); } 
 }
 
-/* สไตล์การ์ดแบบพรีเมียม */
 .premium-card {
     background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* เงาบางๆ */
-    border: 1px solid rgba(0,0,0,0.05);
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
 }
 
+.premium-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
 
-
-
-/* --- ส่วนหัวข้อหน้าคอนเทนต์ --- */
+/* --- Content Header --- */
 .content-header {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(59, 130, 246, 0.1);
 }
-.content-header h1 { font-size: 28px; color: #1a1c1e; }
-.content-header p { color: #666; font-size: 14px; }
 
-/* --- การจัดวาง Grid (4 กิจกรรม) --- */
+.content-header h1 { 
+    font-size: 32px; 
+    color: #1a1a1a;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.content-header p { 
+    color: #7a7a7a; 
+    font-size: 15px;
+    font-weight: 400;
+}
+
+/* --- Activity Grid --- */
 .activity-grid {
     display: grid;
-    /* แบ่งเป็น 2 คอลัมน์ (ถ้าจอกว้าง) และ 1 คอลัมน์ (ถ้าจอมือถือ) */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
 }
 
-/* --- สไตล์ของแต่ละ Card --- */
 .activity-card {
     background: white;
-    border-radius: 15px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    transition: 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .activity-card:hover {
-    transform: translateY(-10px); /* ลอยขึ้นเวลาชี้ */
-    box-shadow: 0 15px 30px rgba(59, 130, 246, 0.15);
+    transform: translateY(-12px);
+    box-shadow: 0 12px 32px rgba(59, 130, 246, 0.18);
+    border-color: rgba(59, 130, 246, 0.2);
 }
 
-/* พื้นที่รูปภาพในการ์ด */
 .card-image {
-    height: 180px;
+    height: 200px;
     background-size: cover;
     background-position: center;
-    background-color: #eee; /* สีสำรองถ้าไม่มีรูป */
+    background-color: #f0f4f8;
     position: relative;
+    transition: transform 0.4s ease;
 }
 
-/* ป้ายกำกับเล็กๆ บนรูป */
+.activity-card:hover .card-image {
+    transform: scale(1.05);
+}
+
 .card-tag {
     position: absolute;
-    top: 15px; left: 15px;
-    background: #3b82f6;
+    top: 15px; 
+    left: 15px;
+    background: linear-gradient(135deg, #6d9cff, #3b82f6);
     color: white;
-    padding: 5px 12px;
+    padding: 6px 14px;
     border-radius: 20px;
-    font-size: 11px;
-    font-weight: bold;
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
 }
 
-/* รายละเอียดภายในการ์ด */
 .card-body {
-    padding: 20px;
+    padding: 24px;
 }
 
 .card-body h3 {
     font-size: 18px;
-    margin-bottom: 10px;
-    color: #1a1c1e;
+    margin-bottom: 12px;
+    color: #1a1a1a;
+    font-weight: 700;
 }
 
 .card-body p {
-    font-size: 13px;
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 15px;
+    font-size: 14px;
+    color: #7a7a7a;
+    line-height: 1.7;
+    margin-bottom: 16px;
 }
 
 .card-date {
-    font-size: 11px;
-    color: #adb5bd;
+    font-size: 12px;
+    color: #a0a0a0;
     font-weight: 500;
 }
 
-
-
-
-/* --- ส่วนเนื้อหาด้านล่าง --- */
+/* --- Bottom Content Grid --- */
 .bottom-content-grid {
-    margin-top: 30px;
+    margin-top: 40px;
     display: grid;
-    grid-template-columns: 2fr 1fr; /* แบ่งซ้ายกว้าง ขวาแคบ */
-    gap: 25px;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
 }
 
-/* ปรับให้เป็นแถวเดียวเมื่อใช้บนมือถือ */
 @media (max-width: 900px) {
     .bottom-content-grid {
         grid-template-columns: 1fr;
     }
 }
 
-/* สไตล์ ProgressBar */
+/* --- Stats & Progress --- */
 .stat-item {
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .stat-item span {
-    font-size: 13px;
-    color: #5f5f5f;
+    font-size: 14px;
+    color: #5a5a5a;
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    font-weight: 500;
 }
 
 .progress-bar {
     width: 100%;
-    height: 8px;
-    background: #727272;
+    height: 10px;
+    background: #f0f4f8;
     border-radius: 10px;
     overflow: hidden;
 }
 
 .progress {
     height: 100%;
-    background: linear-gradient(90deg, #3bb2f6, #2dd4bf);
+    background: linear-gradient(90deg, #6d9cff, #2dd4bf);
     border-radius: 10px;
-    animation: slideProgress 7s ease-out; /* แอนิเมชั่นตอนโหลดหน้า */
+    animation: slideProgress 7s ease-out forwards;
 }
 
 @keyframes slideProgress {
     from { width: 0; }
 }
 
-/* สไตล์รายการ To-do */
+/* --- Todo List --- */
 .todo-list {
     list-style: none;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .todo-list li {
-    font-size: 13px;
-    padding: 10px 0;
-    border-bottom: 1px solid #a1a1a1;
-    color: #444;
+    font-size: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    color: #5a5a5a;
+    transition: all 0.3s ease;
+}
+
+.todo-list li:hover {
+    padding-left: 8px;
+    color: #3b82f6;
 }
 
 .todo-list li:last-child {
     border-bottom: none;
 }
 
-
-
-
-
-/* ส่วนของ Filter ปุ่มกด */
+/* --- Filter Buttons --- */
 .filter-container {
-    margin-top: 20px;
+    margin-top: 25px;
     display: flex;
-    gap: 10px;
+    gap: 12px;
     flex-wrap: wrap;
 }
 
 .filter-btn {
-    padding: 8px 18px;
-    border: 1px solid #ddd;
+    padding: 10px 22px;
+    border: 1.5px solid #e0e5ef;
     background: white;
-    border-radius: 20px;
+    border-radius: 24px;
     cursor: pointer;
     font-size: 13px;
-    transition: 0.3s;
+    font-weight: 500;
+    color: #666;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.filter-btn.active, .filter-btn:hover {
-    background: #3b82f6;
+.filter-btn.active, 
+.filter-btn:hover {
+    background: linear-gradient(135deg, #6d9cff, #3b82f6);
     color: white;
     border-color: #3b82f6;
-    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35);
+    transform: translateY(-2px);
 }
 
-/* Grid ของคลังผลงาน */
-/* ต้องเขียนแบบนี้เป๊ะๆ นะครับ */
+/* --- Project Grid --- */
 .project-grid {
-    display: grid !important; /* ใส่ !important เพื่อบังคับให้มันเป็น Grid */
-
-    /* สั่งให้แบ่งคอลัมน์: ขั้นต่ำ 220px ถ้ากว้างกว่านั้นให้หารเท่ากัน */
+    display: grid !important;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
-
-    gap: 20px; /* ระยะห่างระหว่างการ์ด */
+    gap: 20px;
     width: 100%;
     align-items: start;
 }
 
-/* ป้องกันไม่ให้ตัวลูก (project-item) ขยายกว้างจนเต็มหน้า */
 .project-item {
     width: 100%;
-    display: block; /* ให้คงสภาพเป็นก้อน */
+    display: block;
 }
 
 .p-card {
     background: white;
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
-    border: 1px solid #eee;
-    transition: 0.3s;
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .p-card:hover {
-    transform: scale(1.03);
-    border-color: #3b82f6;
+    transform: scale(1.04);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
 }
 
 .p-img {
@@ -366,14 +496,25 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 40px;
+    background: linear-gradient(135deg, #f5f7fa, #f0f4f8);
 }
 
-.p-info { padding: 15px; }
-.p-info h3 { font-size: 16px; margin-bottom: 5px; }
-.p-info p { font-size: 12px; color: #777; }
+.p-info { 
+    padding: 15px; 
+}
 
+.p-info h3 { 
+    font-size: 16px; 
+    margin-bottom: 5px;
+    color: #1a1a1a;
+}
 
-/* Container ของวงกลมทักษะ */
+.p-info p { 
+    font-size: 12px; 
+    color: #777; 
+}
+
+/* --- Skills Section --- */
 .skills-container {
     display: flex;
     gap: 30px;
@@ -384,17 +525,20 @@ body {
 
 .skill-circle-card {
     background: white;
-    padding: 30px;
+    padding: 35px;
     border-radius: 20px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    transition: 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     width: 200px;
 }
 
-.skill-circle-card:hover { transform: translateY(-5px); }
+.skill-circle-card:hover { 
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
 
-/* สไตล์ SVG วงกลม */
 .circle-box {
     position: relative;
     width: 140px;
@@ -409,7 +553,8 @@ body {
 }
 
 .circle-box svg circle {
-    width: 100%; height: 100%;
+    width: 100%; 
+    height: 100%;
     fill: none;
     stroke: #eee;
     stroke-width: 10;
@@ -418,7 +563,6 @@ body {
 
 .circle-box svg circle:last-child {
     stroke: var(--color);
-    /* คำนวณเส้นรอบวง: 2 * pi * r (2 * 3.14 * 60 = 376.8) */
     stroke-dasharray: 377;
     stroke-dashoffset: calc(377 - (377 * var(--percent)) / 100);
     animation: progressAnim 1.5s ease-out forwards;
@@ -430,14 +574,21 @@ body {
 
 .circle-box .number {
     position: absolute;
-    top: 50%; left: 50%;
+    top: 50%; 
+    left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.circle-box .number h3 { font-size: 24px; color: #333; }
-.circle-box .number h3 span { font-size: 14px; }
+.circle-box .number h3 { 
+    font-size: 24px; 
+    color: #333;
+}
 
-/* สไตล์ Skill Tags */
+.circle-box .number h3 span { 
+    font-size: 14px; 
+}
+
+/* --- Skill Tags --- */
 .tags-container {
     display: flex;
     flex-wrap: wrap;
@@ -446,60 +597,242 @@ body {
 }
 
 .skill-tag {
-    background: #f0f4f8;
-    color: #444;
-    padding: 8px 16px;
+    background: #f5f7fc;
+    color: #5a5a5a;
+    padding: 9px 18px;
     border-radius: 50px;
     font-size: 13px;
     font-weight: 500;
-    transition: 0.3s;
-    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    border: 1px solid #e8ecf5;
 }
 
 .skill-tag:hover {
-    background: #fff;
-    border-color: #3b82f6;
+    background: white;
+    border-color: #6d9cff;
     color: #3b82f6;
-    transform: scale(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
 
 .btn-a123 {
-    background: #f6803b;
+    background: linear-gradient(135deg, #ff9f43, #f68235);
     color: white;
-    padding: 8px 16px;
-    border-radius: 6px;
+    padding: 10px 20px;
+    border-radius: 8px;
     text-decoration: none;
     font-size: 13px;
-    transition: 0.3s;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(246, 130, 53, 0.3);
 }
 
-/* --- ส่วนที่ต้องเพิ่ม/แก้ไขใน style.css --- */
+.btn-a123:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(246, 130, 53, 0.4);
+}
 
-/* ตั้งค่าเริ่มต้นสำหรับหน้าจอขนาดเล็ก (มือถือ) */
+/* --- Mobile Responsive --- */
 @media (max-width: 768px) {
-    /* 1. สั่งให้ Sidebar หดตั้งแต่เริ่ม */
     .sidebar {
-        width: 70px; /* หดเหลือแค่ไอคอน */
+        width: 70px;
     }
     
-    /* 2. ซ่อนข้อความ Logo และชื่อเมนู */
     .sidebar .logo-text, 
     .sidebar .nav-item span {
         display: none;
     }
 
-    /* 3. ดันเนื้อหาหลักมาให้เต็มจอ */
     .main-wrapper {
-        margin-left: 70px; /* ขยับเนื้อหามาทางซ้ายให้พอดีกับ Sidebar ที่หด */
+        margin-left: 70px;
     }
 
-    /* 4. เมื่อมีการกด Toggle (คลาส expanded/collapsed เดิม) */
-    /* ถ้าต้องการให้กดแล้วกางทับเนื้อหาบนมือถือ */
     .sidebar.active-mobile {
         width: 250px;
     }
+
     .sidebar.active-mobile .logo-text,
     .sidebar.active-mobile .nav-item span {
         display: block;
     }
+
+    .content-area {
+        padding: 25px;
+    }
+
+    .activity-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        padding: 0 20px;
+        height: 60px;
+    }
+}
+
+/* --- Login Page Styles --- */
+.login-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-container::before {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    top: -100px;
+    left: -100px;
+}
+
+.login-container::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    bottom: -80px;
+    right: -50px;
+}
+
+.login-box {
+    background: white;
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    z-index: 1;
+    animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-box h2 {
+    font-size: 28px;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.login-box p {
+    color: #7a7a7a;
+    font-size: 14px;
+    margin-bottom: 35px;
+    font-weight: 500;
+}
+
+.input-group {
+    margin-bottom: 22px;
+    position: relative;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e5eaf2;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: #f8fafb;
+    color: #1a1a1a;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.input-group label {
+    position: absolute;
+    left: 16px;
+    top: 14px;
+    font-size: 14px;
+    color: #a0a0a0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label {
+    top: -8px;
+    left: 12px;
+    font-size: 12px;
+    background: white;
+    padding: 0 4px;
+    color: #667eea;
+    font-weight: 600;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.login-btn:disabled {
+    background: #c0c0c0;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.login-btn:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.login-btn.active:not(:disabled) {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    pointer-events: all;
+}
+
+.login-footer {
+    text-align: center;
+}
+
+.troll-btn {
+    background: none;
+    border: none;
+    color: #7a7a7a;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px 0;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.troll-btn:hover {
+    color: #667eea;
+    text-decoration: underline;
 }

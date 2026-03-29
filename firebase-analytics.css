@@ -1,0 +1,161 @@
+/* ============================================
+   View Counter & Analytics Styling
+   ============================================ */
+
+.sidebar-footer {
+    position: sticky;
+    bottom: 0;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: auto;
+    text-align: center;
+}
+
+.view-counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.view-counter-label {
+    font-size: 11px;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+#viewCountBadge {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #6d9cff, #3b82f6);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 12px;
+    min-width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#viewCountBadge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+#viewCountBadge:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+}
+
+/* Animation when count updates */
+#viewCountBadge.count-updated {
+    animation: countPulse 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes countPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.8);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Badge to show page is tracking views */
+.tracking-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: #6d9cff;
+    padding: 4px 8px;
+    background: rgba(109, 156, 255, 0.1);
+    border-radius: 6px;
+    border: 1px solid rgba(109, 156, 255, 0.2);
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+.tracking-badge::before {
+    content: '📍';
+    animation: trackingPulse 2s ease-in-out infinite;
+}
+
+@keyframes trackingPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* View counter info tooltip */
+.view-counter-info {
+    font-size: 9px;
+    color: #7a8fa6;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    line-height: 1.4;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .sidebar-footer {
+        padding: 15px;
+    }
+
+    #viewCountBadge {
+        font-size: 24px;
+        min-width: 60px;
+    }
+
+    .view-counter-label {
+        font-size: 10px;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .sidebar-footer {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    #viewCountBadge {
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    }
+}
+
+/* Loading animation while counting */
+.view-counter.loading #viewCountBadge {
+    opacity: 0.7;
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+}

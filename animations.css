@@ -1,0 +1,310 @@
+/* ========== Animations - ระดับ Enterprise ========== */
+
+/* --- Fade Animations --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* --- Slide Animations --- */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* --- Scale Animations --- */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.05);
+    }
+}
+
+/* --- Bounce Animations --- */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* --- Shimmer Loading Effect --- */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+/* --- Gradient Animation --- */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* --- Glow Effect --- */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+    }
+}
+
+/* --- Floating Animation --- */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* --- Spin Animation --- */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- Smooth Color Change --- */
+@keyframes colorShift {
+    0% {
+        color: var(--color-primary-600);
+    }
+    50% {
+        color: var(--color-primary-500);
+    }
+    100% {
+        color: var(--color-primary-600);
+    }
+}
+
+/* --- Text Reveal Animation --- */
+@keyframes textReveal {
+    from {
+        clip-path: inset(0 100% 0 0);
+    }
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+/* --- Slide Progress Bar --- */
+@keyframes slideProgress {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* --- Rotation Animation --- */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- Wave Animation --- */
+@keyframes wave {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* --- Flip Animation --- */
+@keyframes flip {
+    from {
+        transform: perspective(400px) rotateY(0);
+    }
+    to {
+        transform: perspective(400px) rotateY(360deg);
+    }
+}
+
+/* --- Zoom In Animation --- */
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* --- Parallax Effect --- */
+@keyframes parallax {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50px);
+    }
+}
+
+/* Utility Classes for Using These Animations */
+.animate-fade-in {
+    animation: fadeIn var(--transition-base) var(--easing-ease-out) forwards;
+}
+
+.animate-slide-in-up {
+    animation: slideInUp var(--transition-base) var(--easing-ease-out) forwards;
+}
+
+.animate-slide-in-down {
+    animation: slideInDown var(--transition-base) var(--easing-ease-out) forwards;
+}
+
+.animate-slide-in-left {
+    animation: slideInLeft var(--transition-base) var(--easing-ease-out) forwards;
+}
+
+.animate-slide-in-right {
+    animation: slideInRight var(--transition-base) var(--easing-ease-out) forwards;
+}
+
+.animate-scale-in {
+    animation: scaleIn var(--transition-base) var(--easing-ease-out) forwards;
+}
+
+.animate-bounce {
+    animation: bounce 2s infinite;
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+.animate-glow {
+    animation: glow 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+    background: linear-gradient(
+        90deg,
+        var(--color-bg-secondary) 25%,
+        var(--color-bg-tertiary) 50%,
+        var(--color-bg-secondary) 75%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+}
+
+.animate-on-scroll {
+    opacity: 0;
+}
+
+.animate-on-scroll.in-view {
+    animation: slideInUp 0.6s var(--easing-ease-out) forwards;
+}

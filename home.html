@@ -6,7 +6,14 @@
     <meta name="google-site-verification" content="XqyPlqRbFHldd-DWWRdJcKkDOdJItBBHWyoSMfyqkV0" />
     <title>Vuthikor phrabangWittaya Student Website</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="variables.css">
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet" href="utilities.css">
+    <link rel="stylesheet" href="effects.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal-showcase.css">
+    <link rel="stylesheet" href="firebase-analytics.css">
 </head>
 <body>
 
@@ -23,6 +30,15 @@
             <li class="nav-item" onclick="switchPage('p2')">🛒 <span>คลังผลงาน</span></li>
             <li class="nav-item" onclick="switchPage('p3')">📊<span>ทักษะ/ความสามารถ</span></li>
         </ul>
+        
+        <div class="sidebar-footer">
+            <div class="view-counter">
+                <div class="view-counter-label">👁️ Page Views</div>
+                <div id="viewCountBadge" class="loading">-</div>
+                <div class="tracking-badge">Analytics Enabled</div>
+                <div class="view-counter-info">Powered by Firebase</div>
+            </div>
+        </div>
     </nav>
 
     <div class="main-wrapper" id="mainWrapper">
@@ -40,55 +56,152 @@
         </header>
 
         <main class="content-area">
+
+<!-- ===== MODAL DIALOGS ===== -->
+<div id="modalOverlay" class="modal-overlay" onclick="closeAllModals(event)"></div>
+
+<div id="featureModal" class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Feature Title</h2>
+            <button class="modal-close" onclick="closeModal('featureModal')">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div id="modalBody" class="modal-description">
+                <!-- Content โหลดตรงนี้ -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" onclick="closeModal('featureModal')">ปิด</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero-section fade-in-scroll">
+    <div class="hero-content">
+        <h1 class="hero-title gradient-text">ยินดีต้อนรับสู่ พอร์ตโฟลิโอของ Vuthikor</h1>
+        <p class="hero-subtitle">นักเรียนปัญญาชน💡 | ผู้สร้างสรรค์🎨 | ผู้นำชุมชน👥</p>
+        <p class="hero-description">สำรวจกิจกรรม ผลงาน และทักษะของฉัน ผ่านพอร์ตโฟลิโอที่ออกแบบมาเป็นพิเศษ</p>
+        <div class="hero-buttons">
+            <button class="btn btn-primary" onclick="switchPage('p1'); scrollToTop();">
+                📌 ดูกิจกรรมล่าสุด
+            </button>
+            <button class="btn btn-outline" onclick="switchPage('p2'); scrollToTop();">
+                🎯 ดูผลงาน
+            </button>
+        </div>
+    </div>
+    <div class="hero-graphic">
+        <div class="floating-element element-1">🚀</div>
+        <div class="floating-element element-2">💻</div>
+        <div class="floating-element element-3">🎓</div>
+    </div>
+</section>
+
+<!-- ===== FEATURE SHOWCASE ===== -->
+<section class="showcase-section">
+    <h2 class="section-title fade-in-scroll">✨ ฟีเจอร์พิเศษ</h2>
+    <div class="showcase-grid">
+        
+        <div class="showcase-card glass hover-lift" onclick="openFeatureModal('showcase1')">
+            <div class="showcase-icon">🏆</div>
+            <h3>ความสำเร็จ</h3>
+            <p>รางวัลและสัมฤทธิ์ที่ยิ่งใหญ่</p>
+            <span class="card-link">อ่านเพิ่มเติม →</span>
+        </div>
+
+        <div class="showcase-card glass hover-lift" onclick="openFeatureModal('showcase2')">
+            <div class="showcase-icon">🎮</div>
+            <h3>โครงการสร้างสรรค์</h3>
+            <p>สร้างสรรค์เกมและแอปพลิเคชัน</p>
+            <span class="card-link">อ่านเพิ่มเติม →</span>
+        </div>
+
+        <div class="showcase-card glass hover-lift" onclick="openFeatureModal('showcase3')">
+            <div class="showcase-icon">🤖</div>
+            <h3>เทคโนโลยี IoT</h3>
+            <p>สร้างสิ่งของอัจฉริยะด้วย Arduino</p>
+            <span class="card-link">อ่านเพิ่มเติม →</span>
+        </div>
+
+        <div class="showcase-card glass hover-lift" onclick="openFeatureModal('showcase4')">
+            <div class="showcase-icon">👥</div>
+            <h3>ความเป็นผู้นำ</h3>
+            <p>นำสภานักเรียนและโครงการต่างๆ</p>
+            <span class="card-link">อ่านเพิ่มเติม →</span>
+        </div>
+
+        <div class="showcase-card glass hover-lift" onclick="openFeatureModal('showcase5')">
+            <div class="showcase-icon">🌐</div>
+            <h3>Web Development</h3>
+            <p>สร้างเว็บไซต์สมัยใหม่ที่มีประสิทธิภาพ</p>
+            <span class="card-link">อ่านเพิ่มเติม →</span>
+        </div>
+
+        <div class="showcase-card glass hover-lift" onclick="openFeatureModal('showcase6')">
+            <div class="showcase-icon">🎓</div>
+            <h3>กิจกรรมพัฒนากำลัง</h3>
+            <p>อบรมและพัฒนาทักษะต่างๆ</p>
+            <span class="card-link">อ่านเพิ่มเติม →</span>
+        </div>
+
+    </div>
+</section>
+
 <section id="p1" class="page-section active">
     <header class="content-header">
-        <h1>กิจกรรมล่าสุดที่ได้ทำ</h1>
+        <h1>🎬 กิจกรรมล่าสุดที่ได้ทำ</h1>
         <p>รวบรวมกิจกรรมที่ทำมาล่าสุด แยกเป็นแต่ละด้าน</p>
     </header>
 
     <div class="activity-grid">
 
-        <div class="activity-card">
+        <div class="activity-card fade-in-scroll hover-lift">
             <div class="card-image" style="background-image: url('picture/conten-me.jpg');">
-                <div class="card-tag">Game dev</div>
+                <div class="card-tag">🎮 Game dev</div>
             </div>
             <div class="card-body">
                 <h3>การสร้างสรรค์เกมจากคอมพิวเตอร์</h3>
                 <p>แข่งขันศิลปหัตถกรรม ครั้งที่ 73 การสร้างสรรค์เกมจากคอมพิวเตอร์ ได้รางวัลเหรียญทอง</p>
                 <span class="card-date">12 ธันวาคม 2568</span>
+                <button class="btn btn-primary" style="margin-top: 12px; width: 100%;" onclick="openFeatureModal('showcase2')">ดูรายละเอียด →</button>
             </div>
         </div>
 
-        <div class="activity-card">
+        <div class="activity-card fade-in-scroll hover-lift">
             <div class="card-image" style="background-image: url('picture/me2.jpg');">
-                <div class="card-tag">การเป็นผู้นำ</div>
+                <div class="card-tag">👥 ผู้นำ</div>
             </div>
             <div class="card-body">
-                <h3>สภานักเรียน</h3>
-                <p>เป็นผู้นำนักเรียนใน แผนกการประชาสัมพันธ์กิจกรรม</p>
+                <h3>สภานักเรียน - ประธานประชาสัมพันธ์</h3>
+                <p>เป็นผู้นำนักเรียนใน แผนกการประชาสัมพันธ์กิจกรรม และบริหารจัดการโครงการต่างๆ</p>
                 <span class="card-date">10 มี.ค. 2026</span>
+                <button class="btn btn-primary" style="margin-top: 12px; width: 100%;" onclick="openFeatureModal('showcase4')">ดูรายละเอียด →</button>
             </div>
         </div>
 
-        <div class="activity-card">
+        <div class="activity-card fade-in-scroll hover-lift">
             <div class="card-image" style="background-image: url('picture/e-sporst.png');">
-                <div class="card-tag">กิจกรรมอบรม</div>
+                <div class="card-tag">🏆 อบรม</div>
             </div>
             <div class="card-body">
                 <h3>กิจกรรมการอบรมอีสปอร์ต</h3>
-                <p>อบรมการเป็นโค้ชที่ดีของกีฬาอีสปอร์ต จัดโดย มหาวิทยาลัยราชภัฏสวนสุนันทา กับ สมาคมกีฬาอีสปอร์ตแห่งประเทศได้</p>
+                <p>อบรมการเป็นโค้ชที่ดีของกีฬาอีสปอร์ต จัดโดย มหาวิทยาลัยราชภัฏสวนสุนันทา</p>
                 <span class="card-date">17 มีนาคม 2568</span>
+                <button class="btn btn-primary" style="margin-top: 12px; width: 100%;" onclick="openFeatureModal('showcase6')">ดูรายละเอียด →</button>
             </div>
         </div>
 
-        <div class="activity-card">
+        <div class="activity-card fade-in-scroll hover-lift">
             <div class="card-image" style="background-image: url('picture/performanch.png');">
-                <div class="card-tag">WEB DEV</div>
+                <div class="card-tag">💻 WEB DEV</div>
             </div>
             <div class="card-body">
-                <h3>สร้างเว็ปไซต์</h3>
-                <p>สร้างสรรค์ผลงานเว็ปไซต์เป็นของตัวเอง โดยพึ่งพาองค์ความรู้จาก AI ในการอธิบายโค้ดและการตกแต่งของโค้ด</p>
+                <h3>สร้างเว็ปไซต์โครงการพิเศษ</h3>
+                <p>สร้างสรรค์ผลงานเว็ปไซต์เป็นของตัวเอง โดยใช้ความรู้จากการศึกษา</p>
                 <span class="card-date">01 มี.ค. 2026</span>
+                <button class="btn btn-primary" style="margin-top: 12px; width: 100%;" onclick="openFeatureModal('showcase5')">ดูรายละเอียด →</button>
             </div>
         </div>
 
@@ -256,5 +369,15 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="enterprise.js"></script>
+    <script src="modal-showcase.js"></script>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js"></script>
+    
+    <!-- Firebase Analytics & View Counter -->
+    <script src="firebase-analytics.js"></script>
 </body>
 </html>

@@ -23,6 +23,11 @@ function switchPage(pageId) {
     if (event && event.currentTarget) {
         event.currentTarget.classList.add('active');
     }
+    
+    // 📊 Track section switch with Firebase Analytics
+    if (typeof trackSectionSwitch === 'function') {
+        trackSectionSwitch(pageId);
+    }
 }
 
 

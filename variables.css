@@ -1,0 +1,133 @@
+/* ========== ตัวแปร CSS (Design Tokens) ========== */
+/* สำหรับบริษัทระดับ Enterprise */
+
+:root {
+    /* --- สี Primary --- */
+    --color-primary-50: #f0f9ff;
+    --color-primary-100: #e0f2fe;
+    --color-primary-200: #bae6fd;
+    --color-primary-300: #7dd3fc;
+    --color-primary-400: #38bdf8;
+    --color-primary-500: #0ea5e9;
+    --color-primary-600: #0284c7;
+    --color-primary-700: #0369a1;
+    --color-primary-800: #075985;
+    --color-primary-900: #0c3d66;
+    
+    /* --- สี Secondary --- */
+    --color-secondary-50: #fafaf9;
+    --color-secondary-100: #f5f5f4;
+    --color-secondary-200: #e7e5e4;
+    --color-secondary-300: #d6d3d1;
+    --color-secondary-400: #a8a29e;
+    --color-secondary-500: #78716c;
+    --color-secondary-600: #57534e;
+    --color-secondary-700: #44403c;
+    --color-secondary-800: #292524;
+    --color-secondary-900: #1c1917;
+    
+    /* --- สี Accent --- */
+    --color-accent-orange: #ff9f43;
+    --color-accent-blue: #6d9cff;
+    --color-accent-teal: #2dd4bf;
+    --color-accent-purple: #764ba2;
+    
+    /* --- สี Neutral --- */
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #f8fafb;
+    --color-bg-tertiary: #f0f4f8;
+    --color-text-primary: #1a1a1a;
+    --color-text-secondary: #7a7a7a;
+    --color-text-tertiary: #a0a0a0;
+    --color-border: #e5eaf2;
+    --color-border-light: #f0f4f8;
+    
+    /* --- สี Status --- */
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-error: #ef4444;
+    --color-info: #3b82f6;
+    
+    /* --- ขนาด Typography --- */
+    --font-size-xs: 12px;
+    --font-size-sm: 13px;
+    --font-size-base: 14px;
+    --font-size-lg: 16px;
+    --font-size-xl: 18px;
+    --font-size-2xl: 20px;
+    --font-size-3xl: 24px;
+    --font-size-4xl: 28px;
+    --font-size-5xl: 32px;
+    --font-size-6xl: 40px;
+    
+    /* --- Font Weight --- */
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    /* --- Line Height --- */
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.75;
+    --line-height-loose: 2;
+    
+    /* --- Spacing --- */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 24px;
+    --spacing-2xl: 32px;
+    --spacing-3xl: 48px;
+    --spacing-4xl: 64px;
+    
+    /* --- Border Radius --- */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius-full: 9999px;
+    
+    /* --- Box Shadow (Elevation) --- */
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.12);
+    --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.15);
+    
+    /* --- Transition & Animation --- */
+    --transition-fast: 150ms;
+    --transition-base: 300ms;
+    --transition-slow: 500ms;
+    --easing-ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --easing-ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --easing-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* --- Z-index Scale --- */
+    --z-dropdown: 100;
+    --z-modal-backdrop: 200;
+    --z-modal: 300;
+    --z-tooltip: 400;
+    --z-notification: 500;
+}
+
+/* Light Mode Adjustments */
+@media (prefers-color-scheme: light) {
+    :root {
+        --color-bg-primary: #ffffff;
+        --color-bg-secondary: #f8fafb;
+        --color-text-primary: #1a1a1a;
+    }
+}
+
+/* Dark Mode Support (เพิ่มในอนาคต) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-bg-primary: #0f1419;
+        --color-bg-secondary: #1a2234;
+        --color-text-primary: #f8fafb;
+    }
+}
